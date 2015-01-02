@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Alef:400,700' rel='stylesheet' type='text/css'>
+    {% block stylesheets %}
+        {% stylesheets
+        'bundles/gizmo/css/bootstrap.css'
+        'bundles/gizmo/css/common.css'
+        'bundles/gizmo/css/front_styles.css'
+         %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen">
+        {% endstylesheets %}
+        <style>
+            #contact-us textarea{
+                max-height: 75px;;
+            }
+        </style>
+    {% endblock %}
+
+</head>
+
+<body dir="rtl">
+<div id="big-daddy">
+<div class="navbar-top">
+    <div class="container">
+        <ul class="list-inline" >
+            {top_menu}
+        </ul>
+    </div>
+</div>
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header  navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".header-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('gizmo_home')}}"><span class="logo">גיזמו מייקר</span><br>פיתוח מוצרים וטכנולוגיות</a>
+        </div>
+        <p class="navbar-text contact-info navbar-left">
+            צור קשר<br>054-4745412
+        </p>
+        <div class="collapse navbar-collapse header-collapse">
+            <ul class="nav nav-justified">
+                <li class="how-it-works"><a href="http://gizmomaker.co.il/new/articles/איך_זה_עובד" >
+                         איך זה עובד  {% image '@GizmoBundle/Resources/public/images/help_50.png' %}
+                        <img src="{{ asset_url }}" width="36" height="36" alt="">
+                        {% endimage %}</a></li>
+                <li class="view-projects"><a href="{{ path('project_infinite_scroll') }}">צפה בפרויקטים
+                        {% image '@GizmoBundle/Resources/public/images/search_50.png' %}
+                        <img src="{{ asset_url }}" width="36" height="36" alt="">
+                        {% endimage %}</a></li>
+                <li class="submit-idea"><a href="#contact-us" data-toggle="modal">הגש רעיון
+                        {% image '@GizmoBundle/Resources/public/images/bulb_50.png' %}
+                        <img src="{{ asset_url }}" width="36" height="36" alt="">
+                        {% endimage %}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% block full_top %}
+
+{% endblock %}
+
+
+<div class="container">
+    {% block body %}
+
+    {% endblock %}
+
+</div>
+
+<footer class="site-footer">
+    2014 &copy; גיוס השקעות ומימון
+</footer>
+</div>
+
+{% block javascripts %}
+    {% javascripts
+    '@GizmoBundle/Resources/public/js/jquery-1.11.0.min.js'
+    '@GizmoBundle/Resources/public/js/bootstrap.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
+
+{% endblock %}
+
+<!-- modals -->
+<div class="modal fade" id="contact-us" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{{ path('contact_us') }}">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">צור קשר</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="cInputName">שם מלא</label>
+                    <input type="text" class="form-control" name="name" required="required" id="cInputName" placeholder="שם מלא">
+                </div>
+                <div class="form-group">
+                    <label for="cInputEmail">כתובת דואר אלקטרוני</label>
+                    <input type="email" required="required" class="form-control" name="email" id="cInputEmail" placeholder="כתובת דואר אלקטרוני">
+                </div>
+
+                <div class="form-group">
+                    <label for="cInputName">מספר טלפון </label>
+                    <input type="text" required="required" class="form-control" name="phone" id="cInputPhone" placeholder="מספר טלפון ">
+                </div>
+
+                <div class="form-group">
+                    <label for="cInputMessage">ספר בקצרה על מה מדובר והמהנדס הרלוונטי יצור איתך קשר:</label>
+                    <textarea class="form-control" name="message" id="cInputMessage" placeholder="ספר בקצרה על מה מדובר והמהנדס הרלוונטי יצור איתך קשר"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">לסגור</button>
+                <button type="submit" class="btn btn-primary">שלח הודעה</button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+
+</html>

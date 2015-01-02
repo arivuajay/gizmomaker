@@ -1,0 +1,357 @@
+{% extends 'GizmoBundle::public_main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('js/slick/slick.css') }}" rel="stylesheet" media="screen">
+
+    <style>
+
+        #home-intro {
+            height: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+
+        video#bgvid {
+
+            max-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            background-size: cover;
+        }
+
+        #featured-projects-slide {
+            padding-top: 20px;
+        }
+
+        .slick-slide {
+            background: #fff;
+            margin: 0 10px;
+            padding: 10px;
+
+        }
+
+        .project-item-thumb-wrap {
+            overflow: hidden;
+            height: 150px;
+        }
+
+        /* Arrows */
+        .slick-prev, .slick-next {
+            position: absolute;
+            display: block;
+            height: 70px;
+            width: 70px;
+            line-height: 0;
+            font-size: 0;
+            cursor: pointer;
+            background: transparent;
+            color: transparent;
+            top: 50%;
+            margin-top: -10px;
+            padding: 0;
+            border: none;
+            outline: none;
+        }
+
+        .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+            outline: none;
+            background: transparent;
+            color: transparent;
+        }
+
+        .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+            opacity: 1;
+        }
+
+        .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+            opacity: 0.25;
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: "slick";
+            font-size: 70px;
+            line-height: 1;
+            color: white;
+            opacity: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slick-prev {
+            left: -75px;
+        }
+
+        [dir="rtl"] .slick-prev {
+            left: auto;
+            right: -75px;
+        }
+
+        .slick-prev:before {
+            content: "←";
+        }
+
+        [dir="rtl"] .slick-prev:before {
+            content: "→";
+        }
+
+        .slick-next {
+            right: -75px;
+        }
+
+        [dir="rtl"] .slick-next {
+            left: -75px;
+            right: auto;
+        }
+
+        .slick-next:before {
+            content: "→";
+        }
+
+        [dir="rtl"] .slick-next:before {
+            content: "←";
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/slick/slick.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#featured-projects-slide").slick({
+                slidesToShow: 4,
+                slidesToScroll: 2,
+                dots: false,
+                onInit: function () {
+                    $('.slick-slide').height($('.slick-track').height());
+                }
+            });
+            var current_slide = 1;
+            setInterval(function(){
+                $('.intro-text-area-'+current_slide).removeClass('active');
+
+                if((current_slide + 1) > 3){
+                    current_slide = 1;
+                }else{
+                    current_slide ++;
+                }
+                $('.intro-text-area-'+current_slide).addClass('active');
+            },10000);
+        });
+    </script>
+{% endblock %}
+
+{% block full_top %}
+
+    <div class="home-top-section-wrap">
+        <section id="home-intro">
+            <div class="intro-text">
+                <div class="intro-text-area intro-text-area-1 active">
+                    <h2>פיתוח מוצרים מקונספט למוצר סופי!</h2>
+                    <p>שירות הנדסי מקצועי מלא - פיתוח ומידול, עיצוב תעשייתי, אבי טיפוס וסדרות ייצור.
+                    </p>
+                    <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">התחל</a>
+                </div>
+                <div class="intro-text-area intro-text-area-2">
+                    <h2>הפוך רעיון למציאות!</h2>
+                    <p>צוות המהנדסים שלנו עובד עם יזמים וממציאים והופך רעיונות למוצרים מצליחים.
+                    </p>
+                    <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">התחל</a>
+                </div>
+                <div class="intro-text-area intro-text-area-3">
+                    <h2>הנדסה איכותית  = מוצרים מצליחים</h2>
+                    <p>צוות גיזמו-מייקר מורכב ממהנדסים-יזמים. אנו משלבים הנדסה מתקדמת עם ראיה עיסקית שיווקית וניסיון בייצור שיווק ומכירה.
+                    </p>
+                    <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">התחל</a>
+                </div>
+            </div>
+            <video id="bgvid" autoplay="true" loop="loop" onended="this.play()" {% image '@GizmoBundle/Resources/public/images/screenshot.jpg' %}
+            poster="{{ asset_url }}"
+            {% endimage %}
+            >
+                <source src="/new/vidoes/Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.mp4" type="video/mp4">
+                <source src="/new/videos//Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.webm" type="video/webm">
+
+
+                You need an HTML5 enabled browser to view this video.
+            </video>
+        </section>
+        <section class="home-light-row featured-projects">
+            <div class="container">
+                <h3>פרויקטים מומלצים</h3>
+
+                <div dir="ltr">
+                    <div id="featured-projects-slide">
+                        {home_projects_slide}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- /.home-top-section-wrap -->
+
+    <section class="home-white-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/-BJv_QZ32ao" width="560"
+                                height="315"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h4>תחומי עיסוק</h4>
+
+                    חברת "גיזמו הנדסה" מספקת שרותי מחקר, פיתוח וייצור, ומשרתת חברות טכנולוגיה, יזמים וממציאים.
+                    כמו כן מספקת החברה שירותי פיתוח, תכנון ותכן הנדסי עבור משרד הביטחון וחברות מסחריות בתחומים מגוונים. בין היתר ביצעה פרויקטים מגוונים בתחומי החקלאות, מיכשור רפואי, מוצרי בית, כלי עבודה, מכונות ייצור, רכבי שטח, עזרים לניתוח, כלי עזרה ראשונה, פטנטים בתחום אנרגיה ירוקה, מערכות לייצור אנרגיה, כלים להיגיינה וכלי רחצה, פיתוח מערכות ניסוי וניהול ניסויים, פטנטים רפואיים, פטנטים לחסכון באנרגיה ועוד.
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="home-blue-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h4>צוות הפיתוח</h4>
+
+                    <p>
+                        בחברה פועלים שני מהנדסי מכונות בוגרי הטכניון, מעצב תעשייתי, מהנדס אלקטרוניקה ומפתחים הפועלים בתחומים מגוונים, ביניהם: ציוד רפואי, זיווד אלקטרוני, מערכות מכאניות מורכבות, פלסטיקה, מוצרים אלקטרו-מכאניים, פטנטים בתחום האלקטרוניקה, מכאניקה, אנרגיה ירוקה, הפקת שרטוטי פטנט ועוד.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
+                    <img src="{{ asset_url }}" class="img-rounded img-responsive">
+                    {% endimage %}
+
+
+                </div>
+                <div class="col-lg-3 col-md-3">
+
+                    {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
+                    <img src="{{ asset_url }}" class="img-rounded img-responsive">
+                    {% endimage %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="home-white-row slider-row">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6">
+                    <div id="home-slider-2" class="carousel slide" data-ride="carousel">
+
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+
+                                {% image '@GizmoBundle/Resources/public/images/home-slider/slider2-4.jpg' %}
+                                <img src="{{ asset_url }}" style="width:100%">
+                                {% endimage %}
+                            </div>
+                            <div class="item">
+
+                                {% image '@GizmoBundle/Resources/public/images/home-slider/slider2-2.jpg' %}
+                                <img src="{{ asset_url }}" style="width:100%">
+                                {% endimage %}
+                            </div>
+                            <div class="item">
+
+                                {% image '@GizmoBundle/Resources/public/images/home-slider/slider2-3.jpg' %}
+                                <img src="{{ asset_url }}" style="width:100%">
+                                {% endimage %}
+                            </div>
+
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#home-slider-2" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#home-slider-2" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h4>כנס הפטנטים והממציאים של גיזמו</h4>
+
+                    <p>
+                        "כנס גיזמו" הוא נקודת מפגש עבור מאות יזמים ומשקיעים.
+
+                     </p><p>הכנס נערך בפורמט פתוח ("אי כנס") ונועד עבור כל יזם וממציא בכל שלב, בין אם מדובר ברעיון בלבד או בחברה המוכרת מוצרים מוגמרים.
+                    </p>
+                    <p>הכנס מאפשר להיחשף ליצירתיות, חדשנות ומקוריות מצד יזמים, ממציאים ומשקיעים, כמו גם לזכות בשיתופי פעולה חדשים. במסגרת הכנס ניתן לצפות בתצוגת פרויקטים, להשתתף בקבוצות דיון ולקחת חלק בסדרת מפגשים מקצועיים.
+                    </p>
+                    <h4>ההשתתפות בכנס הינה חינם ובהזמנה בלבד.</h4>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="home-white-row content-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-lg-9">
+                    {content}
+
+
+                    <div class="child-articles">
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 side-bar">
+
+
+                    <div class="panel panel-default">
+                        {right_menu}
+
+
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">הפרויקטים שלנו</div>
+                        <div class="panel-body">
+                            {random_projects}
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">מאמרים מקצועיים
+                        </div>
+                        <div class="panel-body">
+                            <ul>{categories}</ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+
+

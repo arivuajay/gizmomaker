@@ -1,0 +1,171 @@
+{% extends 'GizmoBundle::public_main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('js/slick/slick.css') }}" rel="stylesheet" media="screen">
+
+    <style>
+
+
+
+        #projects-slide {
+            padding-top: 20px;
+            min-height: 400px;
+        }
+
+        .slick-slide {
+            background: #fff;
+            margin: 0 10px;
+            padding: 10px;
+            min-height: 400px;
+        }
+        .project-item-thumb-wrap{
+            text-align: center;
+        }
+        .project-item-thumb-wrap img{
+            max-height: 300px !important;
+            max-width: 100% !important;
+        }
+
+        /* Arrows */
+        .slick-prev, .slick-next {
+            position: absolute;
+            display: block;
+            height: 70px;
+            width: 70px;
+            line-height: 0;
+            font-size: 0;
+            cursor: pointer;
+            background: transparent;
+            color: transparent;
+            top: 50%;
+            margin-top: -10px;
+            padding: 0;
+            border: none;
+            outline: none;
+        }
+
+        .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+            outline: none;
+            background: transparent;
+            color: transparent;
+        }
+
+        .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+            opacity: 1;
+        }
+
+        .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+            opacity: 0.25;
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: "slick";
+            font-size: 70px;
+            line-height: 1;
+            color: white;
+            opacity: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slick-prev {
+            left: -75px;
+        }
+
+        [dir="rtl"] .slick-prev {
+            left: auto;
+            right: -75px;
+        }
+
+        .slick-prev:before {
+            content: "←";
+        }
+
+        [dir="rtl"] .slick-prev:before {
+            content: "→";
+        }
+
+        .slick-next {
+            right: -75px;
+        }
+
+        [dir="rtl"] .slick-next {
+            left: -75px;
+            right: auto;
+        }
+
+        .slick-next:before {
+            content: "→";
+        }
+
+        [dir="rtl"] .slick-next:before {
+            content: "←";
+        }
+
+        .infinite-slide{
+            background: #e9eaed;
+            padding:40px 0 0;
+            margin-bottom:-40px;
+
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/slick/slick.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#projects-slide").slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: false,
+                onInit: function () {
+                    $('.slick-slide').height($('#projects-slide').height());
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block full_top %}
+
+
+    <div class="infinite-slide">
+        <div class="container">
+    <div dir="ltr" class="row">
+    <div id="projects-slide">
+        {% for project in projects %}
+            <div class="project-item clearfix" dir="rtl">
+                {% if(project.hasSlidePhoto()) %}
+                    <div class="project-item-thumb-wrap">
+
+
+
+                        <a href="{{ path('project_view',{'code':project.getCode()}) }}">
+                            <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                        </a>
+                    </div>
+                    {% if(project.getPageTitle()|trim) %}
+                        <a href="{{ path('project_view',{'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                    {% elseif(project.getTitle()|trim) %}
+                        <a href="{{ path('project_view',{'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                    {% endif %}
+
+                    {% if project.fullDescription|length > 400 %}
+                        {{ project.fullDescription|slice(0, 400)}} <a href="{{ path('project_view',{'code':project.getCode()}) }}">קרא עוד</a>
+                    {% else %}
+                        {{ project.fullDescription }}
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

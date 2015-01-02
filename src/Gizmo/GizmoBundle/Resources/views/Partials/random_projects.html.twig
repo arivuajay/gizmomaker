@@ -1,0 +1,22 @@
+
+
+{% for randomProject in randomProjects %}
+<div class="project-item clearfix">
+    {% if(randomProject.hasSlidePhoto()) %}
+    <div class="thumbnail project-item-thumb">
+
+        <a href="{{ path('project_view',{'code':randomProject.getCode()}) }}">
+            <img src="{{ randomProject.getRandomSlidePhoto().getWebPath() }}" >
+        </a>
+
+        {% if(randomProject.getPageTitle()|trim) %}
+        <div class="caption">
+
+            {{  randomProject.getTitle() }}
+
+        </div>
+       {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endfor %}

@@ -1,0 +1,2 @@
+parameters:
+    cms_api_url: "http://mecbit.com/contentbit/new_pages/view/"
