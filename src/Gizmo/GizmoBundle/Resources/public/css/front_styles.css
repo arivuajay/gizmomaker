@@ -196,3 +196,14 @@ footer.site-footer {
 .intro-text-area.active{
     display: block;
 }
+
+.mb25{
+    margin-bottom: 25px;
+}
+
+.bg-white{
+    background-color: #fff !important;
+}
+.project_page .random_project_list{
+    display: none;
+} 

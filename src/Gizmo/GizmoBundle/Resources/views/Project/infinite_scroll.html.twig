@@ -115,7 +115,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('js/slick/slick.min.js') }}"></script>
+    {#<script src="{{ asset('js/slick/slick.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -129,43 +129,36 @@
             });
 
         });
-    </script>
+    </script>#}
 {% endblock %}
 
 {% block full_top %}
 
-
     <div class="infinite-slide">
         <div class="container">
-    <div dir="ltr" class="row">
-    <div id="projects-slide">
-        {% for project in projects %}
-            <div class="project-item clearfix" dir="rtl">
-                {% if(project.hasSlidePhoto()) %}
-                    <div class="project-item-thumb-wrap">
-
-
-
-                        <a href="{{ path('project_view',{'code':project.getCode()}) }}">
-                            <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
-                        </a>
-                    </div>
-                    {% if(project.getPageTitle()|trim) %}
-                        <a href="{{ path('project_view',{'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
-                    {% elseif(project.getTitle()|trim) %}
-                        <a href="{{ path('project_view',{'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
-                    {% endif %}
-
-                    {% if project.fullDescription|length > 400 %}
-                        {{ project.fullDescription|slice(0, 400)}} <a href="{{ path('project_view',{'code':project.getCode()}) }}">קרא עוד</a>
-                    {% else %}
-                        {{ project.fullDescription }}
-                    {% endif %}
-                {% endif %}
+            <div dir="ltr" class="row">
+                <div id="projects-slide">
+                    {% for project in projects %}
+                        <div class="project-item bg-white col-md-3 col-lg-3" dir="rtl">
+                            {% if(project.hasSlidePhoto()) %}
+                                {% if(project.getPageTitle()|trim) %}
+                                    <a href="{{ path('project_view',{'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                                {% elseif(project.getTitle()|trim) %}
+                                    <a href="{{ path('project_view',{'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                                {% endif %}
+                                <div class="project-item-thumb-wrap mb25">
+                                    <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                </div>
+                                {% if project.fullDescription|length > 400 %}
+                                    {{ project.fullDescription|slice(0, 400)}} <a href="{{ path('project_view',{'code':project.getCode()}) }}">קרא עוד</a>
+                                {% else %}
+                                    {{ project.fullDescription }}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
-        </div>
         </div>
     </div>
-</div>
 {% endblock %}
