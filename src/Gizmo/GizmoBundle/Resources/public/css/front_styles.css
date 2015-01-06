@@ -204,6 +204,171 @@ footer.site-footer {
 .bg-white{
     background-color: #fff !important;
 }
-.project_page .random_project_list{
+.project_page .random_project_list .caption{
     display: none;
 } 
+
+#featured-projects-slide a{
+    color: #333;
+    text-decoration: none;
+}
+
+.t-twitter {
+    background: url("../images/t-twitter.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    height: 27px;
+    margin: 0 4px;
+    width: 28px;
+}
+.t-fb {
+    background: url("../images/t-fb.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    height: 27px;
+    margin: 0 4px;
+    width: 28px;
+}
+.t-flickr {
+    background: url("../images/t-flickr.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    height: 27px;
+    margin: 0 4px;
+    width: 28px;
+}
+.t-mail {
+    background: url("../images/t-mail.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    height: 27px;
+    margin: 0 4px;
+    width: 28px;
+}
+.t-fb:hover, .t-twitter:hover, .t-flickr:hover, .t-mail:hover {
+    background-position: 0 -27px;
+    cursor: pointer;
+}
+.social {
+    margin: auto;
+    padding-top: 20px;
+    text-align: center;
+    width: 150px;
+}
+
+.ch-item {
+    border-radius: 50%;
+    cursor: default;
+    height: 100%;
+    position: relative;
+    transition: all 0.4s ease-in-out 0s;
+    width: 100%;
+}
+.team .ch-info {
+    border-radius: 50%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: scale(0);
+    transition: all 0.4s ease-in-out 0s;
+    width: 100%;
+}
+.team .ch-info h3 {
+    color: #fff;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 70px;
+    letter-spacing: 2px;
+    margin: 0 30px -30px;
+    padding: 40px 0 0;
+    position: relative;
+    text-transform: uppercase;
+}
+.team .ch-info p {
+    border-top: 1px solid #fff;
+    color: #fff;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0 30px;
+    padding: 10px 5px;
+}
+.team .ch-info p a {
+    color: #fff;
+    display: block;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+.team .ch-info p a:hover {
+    color: #514b4b;
+}
+.team .ch-item:hover {
+    box-shadow: 0 0 0 140px rgba(0, 138, 193, 1) inset, 0 0 0 5px rgba(19, 85, 163, 0.8) inset, 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.team .ch-item:hover .ch-info {
+    opacity: 1;
+    transform: scale(1);
+}
+.ch-info:hover .ch-info-back {
+}
+.team .ch-infoie9 {
+    border-radius: 50%;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.team .ch-infoie9 h3 {
+    color: #fff;
+    display: none;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 22px;
+    height: 60px;
+    letter-spacing: 2px;
+    margin: 0 30px;
+    padding: 40px 0 0;
+    position: relative;
+    text-transform: uppercase;
+}
+.team .ch-infoie9 p {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    display: none;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0 30px;
+    padding: 10px 5px;
+}
+.team .ch-infoie9 p a {
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    text-transform: uppercase;
+}
+.team .ch-infoie9:hover {
+    background-image: url("../img/rollie9_team.png");
+}
+.team .ch-infoie9:hover h3 {
+    display: block;
+}
+.team .ch-infoie9:hover p {
+    display: block;
+}
+.team .ch-infoie9:hover p a {
+    display: block;
+}
+.team .ch-infoie9 p a:hover {
+    color: #111;
+}
+.team .ch-itemie9 {
+    border-radius: 50%;
+    cursor: default;
+    height: 221px;
+    position: relative;
+    width: 100%;
+}

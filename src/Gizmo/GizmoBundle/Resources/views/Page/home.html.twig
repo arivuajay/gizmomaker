@@ -124,34 +124,39 @@
     {{ parent() }}
     <script src="{{ asset('js/slick/slick.min.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#featured-projects-slide").slick({
                 slidesToShow: 3,
                 slidesToScroll: 2,
                 dots: false,
-                onInit: function () {
+                onInit: function() {
                     $('.slick-slide').height($('.slick-track').height());
                 }
             });
-            
+
             $("#random-project-slide").slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                dots: false
-            });
-            
-            
-            var current_slide = 1;
-            setInterval(function(){
-                $('.intro-text-area-'+current_slide).removeClass('active');
-
-                if((current_slide + 1) > 3){
-                    current_slide = 1;
-                }else{
-                    current_slide ++;
+                dots: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                onInit: function() {
+                    $('.slick-slide').height($('.slick-track').height());
                 }
-                $('.intro-text-area-'+current_slide).addClass('active');
-            },10000);
+            });
+
+
+            var current_slide = 1;
+            setInterval(function() {
+                $('.intro-text-area-' + current_slide).removeClass('active');
+
+                if ((current_slide + 1) > 3) {
+                    current_slide = 1;
+                } else {
+                    current_slide++;
+                }
+                $('.intro-text-area-' + current_slide).addClass('active');
+            }, 10000);
         });
     </script>
 {% endblock %}
@@ -181,9 +186,9 @@
                 </div>
             </div>
             <video id="bgvid" autoplay="true" loop="loop" onended="this.play()" {% image '@GizmoBundle/Resources/public/images/screenshot.jpg' %}
-            poster="{{ asset_url }}"
-            {% endimage %}
-            >
+                   poster="{{ asset_url }}"
+                   {% endimage %}
+                   >
                 <source src="/new/vidoes/Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.mp4" type="video/mp4">
                 <source src="/new/videos//Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.webm" type="video/webm">
 
@@ -216,8 +221,8 @@
                 <div class="col-lg-6 col-md-6">
                     <h4>תחומי עיסוק</h4>
                     <p>
-                    חברת "גיזמו הנדסה" מספקת שרותי מחקר, פיתוח וייצור, ומשרתת חברות טכנולוגיה, יזמים וממציאים.
-                    כמו כן מספקת החברה שירותי פיתוח, תכנון ותכן הנדסי עבור משרד הביטחון וחברות מסחריות בתחומים מגוונים. בין היתר ביצעה פרויקטים מגוונים בתחומי החקלאות, מיכשור רפואי, מוצרי בית, כלי עבודה, מכונות ייצור, רכבי שטח, עזרים לניתוח, כלי עזרה ראשונה, פטנטים בתחום אנרגיה ירוקה, מערכות לייצור אנרגיה, כלים להיגיינה וכלי רחצה, פיתוח מערכות ניסוי וניהול ניסויים, פטנטים רפואיים, פטנטים לחסכון באנרגיה ועוד.
+                        חברת "גיזמו הנדסה" מספקת שרותי מחקר, פיתוח וייצור, ומשרתת חברות טכנולוגיה, יזמים וממציאים.
+                        כמו כן מספקת החברה שירותי פיתוח, תכנון ותכן הנדסי עבור משרד הביטחון וחברות מסחריות בתחומים מגוונים. בין היתר ביצעה פרויקטים מגוונים בתחומי החקלאות, מיכשור רפואי, מוצרי בית, כלי עבודה, מכונות ייצור, רכבי שטח, עזרים לניתוח, כלי עזרה ראשונה, פטנטים בתחום אנרגיה ירוקה, מערכות לייצור אנרגיה, כלים להיגיינה וכלי רחצה, פיתוח מערכות ניסוי וניהול ניסויים, פטנטים רפואיים, פטנטים לחסכון באנרגיה ועוד.
                     </p>
                     <div class="pull-right clearfix">
                         SOME TEXT HERE....
@@ -230,30 +235,77 @@
 
         </div>
     </section>
-    <section class="home-blue-row">
+    <section class="home-white-row team">
         <div class="container">
             <div class="row">
+                {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
+                <div class="col-lg-3 col-md-3  ch-item" style="background-image: url({{ asset_url }});">
+                    {% endimage %}
+                    <div class="ch-info">
+                        <h3>Nimo Rotem</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                </div>
+                {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
+                <div class="col-lg-3 col-md-3  ch-item" style="background-image: url({{ asset_url }});">
+                    {% endimage %}
+                    <div class="ch-info">
+                        <h3>Oleg Zhokov</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                </div>
                 <div class="col-lg-6 col-md-6">
                     <h4>צוות הפיתוח</h4>
-
                     <p>
                         בחברה פועלים שני מהנדסי מכונות בוגרי הטכניון, מעצב תעשייתי, מהנדס אלקטרוניקה ומפתחים הפועלים בתחומים מגוונים, ביניהם: ציוד רפואי, זיווד אלקטרוני, מערכות מכאניות מורכבות, פלסטיקה, מוצרים אלקטרו-מכאניים, פטנטים בתחום האלקטרוניקה, מכאניקה, אנרגיה ירוקה, הפקת שרטוטי פטנט ועוד.
                     </p>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
-                    <img src="{{ asset_url }}" class="img-rounded img-responsive">
+            </div>
+
+
+            <div class="row">
+                {% image '@GizmoBundle/Resources/public/images/herman_zhokov.jpg' %}
+                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
                     {% endimage %}
-
-
+                    <div class="ch-info"><h3>Herman Zhokov</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
+                    </div>                    
                 </div>
-                <div class="col-lg-3 col-md-3">
-
-                    {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
-                    <img src="{{ asset_url }}" class="img-rounded img-responsive">
+                {% image '@GizmoBundle/Resources/public/images/llana_kalman.jpg' %}
+                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
                     {% endimage %}
+                    <div class="ch-info"><h3>Ilana Kalman</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
+                    </div>                    
+                </div>
+                {% image '@GizmoBundle/Resources/public/images/coffee_guo.jpg' %}
+                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
+                    {% endimage %}
+                    <div class="ch-info"><h3>Coffee Guo</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
+                    </div>                    
+                </div>
+                {% image '@GizmoBundle/Resources/public/images/marina_novak.jpg' %}
+                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
+                    {% endimage %}
+                    <div class="ch-info"><h3>Marina Novak</h3>
+                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                    </div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
+                    </div>                    
                 </div>
             </div>
+
 
         </div>
     </section>
@@ -307,7 +359,7 @@
                     <p>
                         "כנס גיזמו" הוא נקודת מפגש עבור מאות יזמים ומשקיעים.
 
-                     </p><p>הכנס נערך בפורמט פתוח ("אי כנס") ונועד עבור כל יזם וממציא בכל שלב, בין אם מדובר ברעיון בלבד או בחברה המוכרת מוצרים מוגמרים.
+                    </p><p>הכנס נערך בפורמט פתוח ("אי כנס") ונועד עבור כל יזם וממציא בכל שלב, בין אם מדובר ברעיון בלבד או בחברה המוכרת מוצרים מוגמרים.
                     </p>
                     <p>הכנס מאפשר להיחשף ליצירתיות, חדשנות ומקוריות מצד יזמים, ממציאים ומשקיעים, כמו גם לזכות בשיתופי פעולה חדשים. במסגרת הכנס ניתן לצפות בתצוגת פרויקטים, להשתתף בקבוצות דיון ולקחת חלק בסדרת מפגשים מקצועיים.
                     </p>
@@ -343,7 +395,7 @@
                         <div class="panel-heading">הפרויקטים שלנו</div>
                         <div class="panel-body">
                             <div id="random-project-slide">
-                            {random_projects}
+                                {random_projects}
                             </div>
                         </div>
                     </div>
