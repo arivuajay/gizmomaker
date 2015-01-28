@@ -1,138 +1,251 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{title}</title>
-    <meta name="viewport" content="width=device-width">
-    <link href='http://fonts.googleapis.com/css?family=Alef:400,700' rel='stylesheet' type='text/css'>
-    {% block stylesheets %}
-        {% stylesheets
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{title}</title>
+        <meta name="viewport" content="width=device-width">
+        <link href='http://fonts.googleapis.com/css?family=Alef:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,700,600' rel='stylesheet' type='text/css'>
+        {% block stylesheets %}
+            {% stylesheets
         'bundles/gizmo/css/bootstrap.css'
         'bundles/gizmo/css/common.css'
         'bundles/gizmo/css/front_styles.css'
-         %}
-        <link href="{{ asset_url }}" rel="stylesheet" media="screen">
-        {% endstylesheets %}
-        <style>
-            #contact-us textarea{
-                max-height: 75px;;
-            }
-        </style>
-    {% endblock %}
+            %}
+            <link href="{{ asset_url }}" rel="stylesheet" media="screen">
+            {% endstylesheets %}
+            <style>
+                #contact-us textarea{
+                    max-height: 75px;;
+                }
+            </style>
+        {% endblock %}
+    </head>
 
-</head>
+    <body dir="rtl">
+        <div id="big-daddy">
+            <div class="navbar-top">
+                <div class="container">
+                    <ul class="list-inline" >
+                        {top_menu}
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header  navbar-right">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".header-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{path('gizmo_home')}}"><span class="logo">גיזמו מייקר</span><br>פיתוח מוצרים וטכנולוגיות</a>
+                    </div>
+                    <p class="navbar-text contact-info navbar-left">
+                        צור קשר<br>
+                        {% set ppc_source =  app.request.get('utm_source') %}
+                        {% set ppc_campaign =  app.request.get('utm_campaign') %}
 
-<body dir="rtl">
-<div id="big-daddy">
-<div class="navbar-top">
-    <div class="container">
-        <ul class="list-inline" >
-            {top_menu}
-        </ul>
-    </div>
-</div>
-<div class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header  navbar-right">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".header-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{path('gizmo_home')}}"><span class="logo">גיזמו מייקר</span><br>פיתוח מוצרים וטכנולוגיות</a>
+                        {% if (ppc_source|length > 0) or (ppc_campaign|length > 0) %}
+                            055-8874012
+                        {% else %}
+                            054-4745412
+                        {% endif %}
+                    </p>
+                    <div class="collapse navbar-collapse header-collapse">
+                        <ul class="nav nav-justified">
+                            <li class="how-it-works"><a href="http://gizmomaker.co.il/articles/איך_זה_עובד" >
+                                    איך זה עובד  {% image '@GizmoBundle/Resources/public/images/help_50.png' %}
+                                    <img src="{{ asset_url }}" width="36" height="36" alt="">
+                                    {% endimage %}</a></li>
+                            <li class="view-projects"><a href="{{ path('project_infinite_scroll') }}">צפה בפרויקטים
+                                    {% image '@GizmoBundle/Resources/public/images/search_50.png' %}
+                                    <img src="{{ asset_url }}" width="36" height="36" alt="">
+                                    {% endimage %}</a></li>
+                            <li class="submit-idea"><a href="#contact-us" data-toggle="modal">התחל
+                                    {% image '@GizmoBundle/Resources/public/images/bulb_50.png' %}
+                                    <img src="{{ asset_url }}" width="36" height="36" alt="">
+                                    {% endimage %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% block full_top %}
+
+            {% endblock %}
+
+
+            <div class="container">
+                {% block body %}
+
+                {% endblock %}
+
+            </div>
+
+            <footer class="site-footer">
+                2014 &copy; {title}
+            </footer>
         </div>
-        <p class="navbar-text contact-info navbar-left">
-            צור קשר<br>054-4745412
-        </p>
-        <div class="collapse navbar-collapse header-collapse">
-            <ul class="nav nav-justified">
-                <li class="how-it-works"><a href="http://gizmomaker.co.il/new/articles/איך_זה_עובד" >
-                         איך זה עובד  {% image '@GizmoBundle/Resources/public/images/help_50.png' %}
-                        <img src="{{ asset_url }}" width="36" height="36" alt="">
-                        {% endimage %}</a></li>
-                <li class="view-projects"><a href="{{ path('project_infinite_scroll') }}">צפה בפרויקטים
-                        {% image '@GizmoBundle/Resources/public/images/search_50.png' %}
-                        <img src="{{ asset_url }}" width="36" height="36" alt="">
-                        {% endimage %}</a></li>
-                <li class="submit-idea"><a href="#contact-us" data-toggle="modal">הגש רעיון
-                        {% image '@GizmoBundle/Resources/public/images/bulb_50.png' %}
-                        <img src="{{ asset_url }}" width="36" height="36" alt="">
-                        {% endimage %}</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
 
-{% block full_top %}
-
-{% endblock %}
-
-
-<div class="container">
-    {% block body %}
-
-    {% endblock %}
-
-</div>
-
-<footer class="site-footer">
-    2014 &copy; גיוס השקעות ומימון
-</footer>
-</div>
-
-{% block javascripts %}
-    {% javascripts
-    '@GizmoBundle/Resources/public/js/jquery-1.11.0.min.js'
+        {% block javascripts %}
+            {% javascripts
+    '@GizmoBundle/Resources/public/js/jquery-2.0.1.min.js'
     '@GizmoBundle/Resources/public/js/bootstrap.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-
-    {% endjavascripts %}
-
-{% endblock %}
-
-<!-- modals -->
-<div class="modal fade" id="contact-us" role="dialog" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" action="{{ path('contact_us') }}">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">צור קשר</h4>
+            %}
+            <script src="{{ asset_url }}"></script>
+            {#        ***************************************************************
+            <!-- Google Code for Remarketing Tag -->
+            <!--------------------------------------------------
+            Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+            --------------------------------------------------->#}
+            <script type="text/javascript">
+                /* <![CDATA[ */
+                var google_conversion_id = 1054807211;
+                var google_custom_params = window.google_tag_params;
+                var google_remarketing_only = true;
+                /* ]]> */
+            </script>
+            <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+            </script>
+            <noscript>
+            <div style="display:inline;">
+                <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1054807211/?value=0&amp;guid=ON&amp;script=0"/>
             </div>
-            <div class="modal-body">
+            </noscript>
+            {#**********************************************************
 
-                <div class="form-group">
-                    <label for="cInputName">שם מלא</label>
-                    <input type="text" class="form-control" name="name" required="required" id="cInputName" placeholder="שם מלא">
-                </div>
-                <div class="form-group">
-                    <label for="cInputEmail">כתובת דואר אלקטרוני</label>
-                    <input type="email" required="required" class="form-control" name="email" id="cInputEmail" placeholder="כתובת דואר אלקטרוני">
-                </div>
+            Google analytics code:
 
-                <div class="form-group">
-                    <label for="cInputName">מספר טלפון </label>
-                    <input type="text" required="required" class="form-control" name="phone" id="cInputPhone" placeholder="מספר טלפון ">
-                </div>
+            **********************************************************#}
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-10722522-6']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script');
+                    ga.type = 'text/javascript';
+                    ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+            {% endjavascripts %}
 
-                <div class="form-group">
-                    <label for="cInputMessage">ספר בקצרה על מה מדובר והמהנדס הרלוונטי יצור איתך קשר:</label>
-                    <textarea class="form-control" name="message" id="cInputMessage" placeholder="ספר בקצרה על מה מדובר והמהנדס הרלוונטי יצור איתך קשר"></textarea>
-                </div>
+        {% endblock %}
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">לסגור</button>
-                <button type="submit" class="btn btn-primary">שלח הודעה</button>
-            </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        <!-- modals -->
+        <div class="modal fade" id="contact-us" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="{{ path('contact_us') }}">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">צור קשר</h4>
+                        </div>
+                        <div class="modal-body clearfix">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="row">
+                                    <p>כל פרויקט חדש בגיזמו-מייקר מתחיל בשיחה קצרה או פגישה ללא התחייבות.
+                                        אנחנו תמיד שמחים להכיר ממציאים ויזמים, ליעץ ולעזור ככל שנוכל.
+                                        מלא את הפרטים ואחד מאיתנו יצור איתך קשר בזריזות:</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 team popup">
+                                <h4 style="text-align: center;"><u>הצוות</u></h4>
+                                <div class="row">
+                                    {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
+                                    <div class="ch-list">
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Nimo Rotem</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ch-list">
+                                        {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Oleg Zhokov</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="ch-list">
+                                        {% image '@GizmoBundle/Resources/public/images/herman_zhokov.jpg' %}
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Herman Zhokov</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ch-list">
+                                        {% image '@GizmoBundle/Resources/public/images/llana_kalman.jpg' %}
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Ilana Kalman</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="ch-list">
+                                        {% image '@GizmoBundle/Resources/public/images/coffee_guo.jpg' %}
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Coffee Guo</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ch-list">
+                                        {% image '@GizmoBundle/Resources/public/images/marina_novak.jpg' %}
+                                        <div class="ch-item" style="background-image: url({{ asset_url }});">
+                                            {% endimage %}
+                                            <div class="ch-info">
+                                                <h3>Marina Novak</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="cInputName">שם מלא</label>
+                                    <input type="text" class="form-control" name="name" required="required" id="cInputName" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cInputEmail">כתובת דואר אלקטרוני</label>
+                                    <input type="email" required="required" class="form-control" name="email" id="cInputEmail" />
+                                </div>
 
-</body>
+                                <div class="form-group">
+                                    <label for="cInputName">מספר טלפון </label>
+                                    <input type="text" required="required" class="form-control" name="phone" id="cInputPhone" />
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="cInputMessage">ספר בקצרה על מה מדובר והמהנדס הרלוונטי יצור איתך קשר:</label>
+                                    <textarea class="form-control" name="message" id="cInputMessage"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">לסגור</button>
+                            <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </body>
 </html>

@@ -11,11 +11,7 @@
             </div>
 
             <div class="caption">
-                {% if randomProject.fullDescription|length > 200 %}
-                    {{ randomProject.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':randomProject.getCode()}) }}">קרא עוד</a>
-                {% else %}
-                    {{ randomProject.fullDescription }}
-                {% endif %}
+                {{ randomProject.shortWordsDescription(20) }} <a href="{{ path('project_view',{'code':randomProject.getCode()}) }}">קרא עוד</a>
             </div>
         {% endif %}
     </div>

@@ -116,13 +116,32 @@
             content: "←";
         }
 
-
+        .t-twitter,.t-mail,.t-flickr,.t-fb {
+            background: no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            float: left;
+            height: 27px;
+            margin: 0 4px;
+            width: 28px;
+        }
+        .t-twitter{
+            background-image: url("{{ asset('images/t-twitter.png') }}") ;
+        }
+        .t-fb {
+            background-image: url("{{ asset('images/t-fb.png') }}") ;
+        }
+        .t-flickr {
+            background-image: url("{{ asset('images/t-flickr.png') }}") ;
+        }
+        .t-mail {
+            background-image: url("{{ asset('images/t-mail.png') }}") ;
+        }
     </style>
-{% endblock %}
+    {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/slick/slick.min.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("#featured-projects-slide").slick({
@@ -139,10 +158,7 @@
                 slidesToScroll: 1,
                 dots: false,
                 autoplay: true,
-                autoplaySpeed: 2000,
-                onInit: function() {
-                    $('.slick-slide').height($('.slick-track').height());
-                }
+                autoplaySpeed: 2000
             });
 
 
@@ -162,7 +178,6 @@
 {% endblock %}
 
 {% block full_top %}
-
     <div class="home-top-section-wrap">
         <section id="home-intro">
             <div class="intro-text">
@@ -185,20 +200,16 @@
                     <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">התחל</a>
                 </div>
             </div>
-            <video id="bgvid" autoplay="true" loop="loop" onended="this.play()" {% image '@GizmoBundle/Resources/public/images/screenshot.jpg' %}
-                   poster="{{ asset_url }}"
-                   {% endimage %}
-                   >
-                <source src="/new/vidoes/Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.mp4" type="video/mp4">
-                <source src="/new/videos//Nemo_Web 3_YouTube-Vimeo HD 1080p 8000KBS.webm" type="video/webm">
-
-
+            <video id="bgvid" autoplay="true" loop="loop" onended="this.play()" muted>
+                <source src="/videos/Compressed/Nemo_Web_{{slide_video}}_YouTube-Vimeo_HD_1080p_8000KBS.mp4" type="video/mp4">
+                <source src="/videos/Compressed/Nemo_Web_{{slide_video}}_YouTube-Vimeo_HD_1080p_8000KBS.webm" type="video/webm">
                 You need an HTML5 enabled browser to view this video.
             </video>
         </section>
+
         <section class="home-light-row featured-projects">
             <div class="container">
-                <h3>פרויקטים מומלצים</h3>
+                <h3>המצאות ופרויקטים בגיזמו-מייקר</h3>
 
                 <div dir="ltr">
                     <div id="featured-projects-slide">
@@ -209,7 +220,7 @@
         </section>
     </div><!-- /.home-top-section-wrap -->
 
-    <section class="home-white-row">
+    <section class="home-white-row area-of-practice">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -219,17 +230,16 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <h4>תחומי עיסוק</h4>
-                    <p>
+                    <h4 style="font-size: 24px;">תחומי עיסוק</h4>
+                    <p style="font-size: 16px;">
                         חברת "גיזמו הנדסה" מספקת שרותי מחקר, פיתוח וייצור, ומשרתת חברות טכנולוגיה, יזמים וממציאים.
                         כמו כן מספקת החברה שירותי פיתוח, תכנון ותכן הנדסי עבור משרד הביטחון וחברות מסחריות בתחומים מגוונים. בין היתר ביצעה פרויקטים מגוונים בתחומי החקלאות, מיכשור רפואי, מוצרי בית, כלי עבודה, מכונות ייצור, רכבי שטח, עזרים לניתוח, כלי עזרה ראשונה, פטנטים בתחום אנרגיה ירוקה, מערכות לייצור אנרגיה, כלים להיגיינה וכלי רחצה, פיתוח מערכות ניסוי וניהול ניסויים, פטנטים רפואיים, פטנטים לחסכון באנרגיה ועוד.
                     </p>
                     <div class="pull-right clearfix">
-                        SOME TEXT HERE....
-                        <br />
-                        <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">BUTTON TEXT</a>
+                        <b>   קבע שיחת יעוץ עם אחד המהנדסים שלנו</b>
+                        <br /><br />
+                        <a  href="#contact-us" data-toggle="modal" class="btn btn-primary btn-lg">התחל</a>
                     </div>
-
                 </div>
             </div>
 
@@ -239,70 +249,98 @@
         <div class="container">
             <div class="row">
                 {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
-                <div class="col-lg-3 col-md-3  ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info">
-                        <h3>Nimo Rotem</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info">
+                            <h3>Nimo Rotem</h3>
+                            <p>Founder & Chief Engineer<br><a href="mailto:nimo@gizmomaker.com" target="_top">Contact him</a></p>
+                        </div>
+                    </div>
+                    <div class="infomembers">Nimo Rotem | <span class="membertag">Founder</span></div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:nimo@gizmomaker.com" target="_top"></a>
                     </div>
                 </div>
-                {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
-                <div class="col-lg-3 col-md-3  ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info">
-                        <h3>Oleg Zhokov</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    {% image '@GizmoBundle/Resources/public/images/oleg.jpg' %}
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info">
+                            <h3>Oleg Zhokov</h3>
+                            <p>Founder & CEO<br><a href="mailto:oleg@gizmomaker.com" target="_top">Contact him</a></p>
+                        </div>
+                    </div>
+                    <div class="infomembers">Oleg Zhokov | <span class="membertag">Manager</span></div>
+                    <div class="socialicons">
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:oleg@gizmomaker.com" target="_top"></a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <h4>צוות הפיתוח</h4>
-                    <p>
-                        בחברה פועלים שני מהנדסי מכונות בוגרי הטכניון, מעצב תעשייתי, מהנדס אלקטרוניקה ומפתחים הפועלים בתחומים מגוונים, ביניהם: ציוד רפואי, זיווד אלקטרוני, מערכות מכאניות מורכבות, פלסטיקה, מוצרים אלקטרו-מכאניים, פטנטים בתחום האלקטרוניקה, מכאניקה, אנרגיה ירוקה, הפקת שרטוטי פטנט ועוד.
+                <div class="clearfix">
+                    <h4 style="font-size: 24px;">צוות הפיתוח</h4>
+                    <p style="font-size: 16px;">צוות גיזמו-מייקר:
+                        בחברה פועלים שני מהנדסי מכונות בוגרי הטכניון, מעצבת תעשייתית, מהנדס אלקטרוניקה, פיסיקאי ואנשי פיתוח הפועלים בתחומים מגוונים של מחקר פיתוח וקידום מיזמים.
+
+                        בגיזמו מייקר, כולנו יזמים בעצמנו, עם ניסיון מוצרים והמצאו פרי פיתוחנו.
+                        מספר חברות סטארט-אפ מצליחות כבר נוצרו וגדלו מתוך המשרד שלנו.
+                        כאשר אנחנו עובדים עם יזמים וממציאים אנחנו משקיעים את אותו הידע, ההתלהבות והתשוקה, כאילו היה זה אחד הפרויקטים האישיים שלנו.
                     </p>
                 </div>
             </div>
 
 
             <div class="row">
-                {% image '@GizmoBundle/Resources/public/images/herman_zhokov.jpg' %}
-                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info"><h3>Herman Zhokov</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    {% image '@GizmoBundle/Resources/public/images/herman_zhokov.jpg' %}
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info"><h3>Herman Zhokov</h3>
+                            <p>Project Manager<br><a href="mailto:herman@gizmomaker.com"  target="_top">Contact him</a></p>
+                        </div>
                     </div>
+                    <div class="infomembers">Herman Zhokov | <span class="membertag">Project Manager</span></div>
                     <div class="socialicons">
-                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
-                    </div>                    
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:herman@gizmomaker.com"  target="_top"></a>
+                    </div>
                 </div>
-                {% image '@GizmoBundle/Resources/public/images/llana_kalman.jpg' %}
-                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info"><h3>Ilana Kalman</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    {% image '@GizmoBundle/Resources/public/images/llana_kalman.jpg' %}
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info"><h3>Ilana Kalman</h3>
+                            <p>Content & Sales<br><a href="mailto:ilana@gizmomaker.com" target="_top">Contact him</a></p>
+                        </div>
                     </div>
+                    <div class="infomembers">Ilana Kalman | <span class="membertag">Electronics</span></div>
                     <div class="socialicons">
-                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
-                    </div>                    
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:ilana@gizmomaker.com" target="_top"></a>
+                    </div>
                 </div>
-                {% image '@GizmoBundle/Resources/public/images/coffee_guo.jpg' %}
-                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info"><h3>Coffee Guo</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    {% image '@GizmoBundle/Resources/public/images/coffee_guo.jpg' %}
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info"><h3>Coffee Guo</h3>
+                            <p>China Office Manager<br><a href="mailto:coffee@nemopowertools.com" target="_top">Contact him</a></p>
+                        </div>
                     </div>
+                    <div class="infomembers">Coffee Guo | <span class="membertag">Industrial Designer</span></div>
                     <div class="socialicons">
-                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
-                    </div>                    
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:coffee@nemopowertools.com" target="_top"></a>
+                    </div>
                 </div>
-                {% image '@GizmoBundle/Resources/public/images/marina_novak.jpg' %}
-                <div class="col-lg-3 col-md-3 ch-item" style="background-image: url({{ asset_url }});">
-                    {% endimage %}
-                    <div class="ch-info"><h3>Marina Novak</h3>
-                        <p>Set "description" parameter of team_member shortcode<br><a href="#">Contact him</a></p>
+                <div class="ch-list">
+                    {% image '@GizmoBundle/Resources/public/images/marina_novak.jpg' %}
+                    <div class="ch-item" style="background-image: url({{ asset_url }});">
+                        {% endimage %}
+                        <div class="ch-info"><h3>Marina Novak</h3>
+                            <p>Industrial Designer<br><a href="mailto:marina@gizmomaker.com" target="_top">Contact him</a></p>
+                        </div>
                     </div>
+                    <div class="infomembers">Marina Novak | <span class="membertag">Industrial Designer</span></div>
                     <div class="socialicons">
-                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="#"></a>
-                    </div>                    
+                        <a class="t-twitter" href="#"></a><a class="t-fb" href="#"></a><a class="t-flickr" href="#"></a><a class="t-mail" href="mailto:marina@gizmomaker.com" target="_top"></a>
+                    </div>
                 </div>
             </div>
 
@@ -364,6 +402,10 @@
                     <p>הכנס מאפשר להיחשף ליצירתיות, חדשנות ומקוריות מצד יזמים, ממציאים ומשקיעים, כמו גם לזכות בשיתופי פעולה חדשים. במסגרת הכנס ניתן לצפות בתצוגת פרויקטים, להשתתף בקבוצות דיון ולקחת חלק בסדרת מפגשים מקצועיים.
                     </p>
                     <h4>ההשתתפות בכנס הינה חינם ובהזמנה בלבד.</h4>
+
+                    <div class="pull-right">
+                        <a class="btn btn-primary btn-lg" href="http://gizmomaker.co.il/articles/top/כנס_גיזמו">כנס גיזמו</a>
+                    </div>
                 </div>
             </div>
 
@@ -375,31 +417,25 @@
             <div class="row">
                 <div class="col-md-9 col-lg-9">
                     {content}
-
-
                     <div class="child-articles">
                         <ul></ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-lg-3 side-bar">
-
-
                     <div class="panel panel-default">
                         {right_menu}
-
-
                     </div>
-
 
                     <div class="panel panel-default">
                         <div class="panel-heading">הפרויקטים שלנו</div>
                         <div class="panel-body">
-                            <div id="random-project-slide">
-                                {random_projects}
+                            <div dir="ltr">
+                                <div id="random-project-slide">
+                                    {random_projects}
+                                </div>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="panel panel-default">
                         <div class="panel-heading">מאמרים מקצועיים
@@ -408,8 +444,6 @@
                             <ul>{categories}</ul>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

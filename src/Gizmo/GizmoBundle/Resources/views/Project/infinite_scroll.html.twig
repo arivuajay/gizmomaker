@@ -133,28 +133,49 @@
 {% endblock %}
 
 {% block full_top %}
-
     <div class="infinite-slide">
         <div class="container">
+            <div class="col-lg-12 col-md-12 white-box" style="margin-bottom: 30px;padding-top: 0px; margin-top: 0;">
+                <div class="row">
+                    <h3 style="text-align: center; padding-bottom:10px; "><u> גלריית פרויקטים ומוצרים שפיתחנו:</u></h3>
+                    <p style="font-size: 16px;">
+                        בעמוד זה מוצגים חלק קטן מהפרויקטים והמוצרים אשר פיתחנו במשרד ההנדסה גיזמו-מייקר בשנים האחרונות.
+                        משרד גיזמו-מייקר הוביל מעל 400 פרויקטים בסדרי גודל שונים.
+                        חלק מהפרויקטים הללו בוצעו עבור לקוחותינו וחלקם כפרויקטים פנימיים מתוך רעיונות שהונבטו במשרד.
+                        מספר מוצרים מתוך הפרויקטים המוצגים נחלו הצלחה שיווקית ואף הפכו לחברות מצליחות בפני עצמן.
+                        בגיזמו אנו מאמינים שהמעורבות שלנו בכלכך הרבה פרויקטים שונים, מעניקה לנו ידע וניסיון בעלי ערך רב.
+                        ראינו עם השנים פרויקטים מוצלחים יותר ומוצלחים פחות, ליווינו את התהליך פעמים רבות ולמדנו כיצד להפוך רעיונות למוצרים מצליחים.
+                        מספר הפרויקטים הרב והניסיון המצטבר שלנו ושל כלל לקוחותינו, מאפשר לנו ללמוד בזוית רחבה על ההחלטות שמביאות בדר"כ להצלחה מסחרית.
+                        הידע המקצועי הזה הוא שמנחה אותנו בכל פרויקט חדש ומאפשר לנו לפתח ולקדם מוצרים מצליחים בצורה עיקבית.
+                    </p>
+                </div>
+            </div>
+
             <div dir="ltr" class="row">
                 <div id="projects-slide">
-                    {% for project in projects %}
-                        <div class="project-item bg-white col-md-3 col-lg-3" dir="rtl">
-                            {% if(project.hasSlidePhoto()) %}
-                                {% if(project.getPageTitle()|trim) %}
-                                    <a href="{{ path('project_view',{'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
-                                {% elseif(project.getTitle()|trim) %}
-                                    <a href="{{ path('project_view',{'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
-                                {% endif %}
-                                <div class="project-item-thumb-wrap mb25">
-                                    <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                    {% for row in projects|batch(4) %}
+                        <div clas="row">
+                            {% for project in row %}
+                                <div class="project-item col-md-3 col-lg-3" dir="rtl">
+                                    <div class="bg-white project-item-desc">
+                                        {% if(project.hasSlidePhoto()) %}
+                                            {% if(project.getPageTitle()|trim) %}
+                                                <a href="{{ path('project_view',{'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                                            {% elseif(project.getTitle()|trim) %}
+                                                <a href="{{ path('project_view',{'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                                                    {% endif %}
+                                            <div class="project-item-thumb-wrap mb25">
+                                                <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                            </div>
+                                            {% if project.fullDescription|length > 200 %}
+                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode()}) }}">קרא עוד</a>
+                                            {% else %}
+                                                {{ project.fullDescription }}
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
                                 </div>
-                                {% if project.fullDescription|length > 400 %}
-                                    {{ project.fullDescription|slice(0, 400)}} <a href="{{ path('project_view',{'code':project.getCode()}) }}">קרא עוד</a>
-                                {% else %}
-                                    {{ project.fullDescription }}
-                                {% endif %}
-                            {% endif %}
+                            {% endfor %}
                         </div>
                     {% endfor %}
                 </div>

@@ -109,7 +109,7 @@ ol {
     background: #50C1FF;
     padding: 30px 0;
 }
-.home-white-row.slider-row {
+.home-white-row.slider-row, .home-white-row.team,.home-white-row.area-of-practice {
     border-bottom: 3px solid #e9eaed;
 }
 #home-slider-2 .right.carousel-control,
@@ -182,11 +182,11 @@ footer.site-footer {
 }
 
 .intro-text h2{
-    font-size:4em;
+    font-size:64px !important;
     color:white !important; text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.75) !important;
 }
 .intro-text p{
-    font-size:1.3em;
+    font-size:20px !important;
     color:white !important; text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.75) !important;
 }
 
@@ -213,33 +213,20 @@ footer.site-footer {
     text-decoration: none;
 }
 
-.t-twitter {
-    background: url("../images/t-twitter.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    float: left;
-    height: 27px;
-    margin: 0 4px;
-    width: 28px;
+.infomembers {
+    color: #484545;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: auto;
+    margin-left: -40px;
+    padding: 25px 0 20px;
+    text-align: center;
+    width: 300px;
 }
-.t-fb {
-    background: url("../images/t-fb.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    float: left;
-    height: 27px;
-    margin: 0 4px;
-    width: 28px;
-}
-.t-flickr {
-    background: url("../images/t-flickr.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    float: left;
-    height: 27px;
-    margin: 0 4px;
-    width: 28px;
-}
-.t-mail {
-    background: url("../images/t-mail.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    float: left;
-    height: 27px;
-    margin: 0 4px;
-    width: 28px;
+.membertag {
+    color: #008ac1;
+    font-weight: 600;
 }
 .t-fb:hover, .t-twitter:hover, .t-flickr:hover, .t-mail:hover {
     background-position: 0 -27px;
@@ -252,6 +239,23 @@ footer.site-footer {
     width: 150px;
 }
 
+.team .ch-list {
+  float: left;
+  height: 210px;
+  list-style: outside none none;
+  text-align: center;
+  width: 210px;
+  margin: 20px 40px 100px;
+}
+
+.team.popup .ch-list {
+  height: 130px;
+  list-style: outside none none;
+  text-align: center;
+  width: 130px;
+  margin: 20px 5px 20px;
+}
+
 .ch-item {
     border-radius: 50%;
     cursor: default;
@@ -259,6 +263,7 @@ footer.site-footer {
     position: relative;
     transition: all 0.4s ease-in-out 0s;
     width: 100%;
+     background-size: cover;
 }
 .team .ch-info {
     border-radius: 50%;
@@ -276,7 +281,7 @@ footer.site-footer {
     font-weight: bold;
     height: 70px;
     letter-spacing: 2px;
-    margin: 0 30px -30px;
+    margin: 0 30px 0px;
     padding: 40px 0 0;
     position: relative;
     text-transform: uppercase;
@@ -310,65 +315,23 @@ footer.site-footer {
     opacity: 1;
     transform: scale(1);
 }
-.ch-info:hover .ch-info-back {
+
+#random-project-slide .slick-prev,#random-project-slide .slick-next{
+    display: none !important;
 }
-.team .ch-infoie9 {
-    border-radius: 50%;
+
+#random-project-slide {
+  margin-bottom: 0;
+}
+.project-item {
+  height: 400px;
+  margin-bottom: 20px;
+}
+.project-item-desc{
+    padding: 10px;
     height: 100%;
-    position: absolute;
-    width: 100%;
 }
-.team .ch-infoie9 h3 {
-    color: #fff;
-    display: none;
-    font-family: "Open Sans",Arial,sans-serif;
-    font-size: 22px;
-    height: 60px;
-    letter-spacing: 2px;
-    margin: 0 30px;
-    padding: 40px 0 0;
-    position: relative;
-    text-transform: uppercase;
-}
-.team .ch-infoie9 p {
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    color: #fff;
-    display: none;
-    font-size: 12px;
-    font-style: italic;
-    margin: 0 30px;
-    padding: 10px 5px;
-}
-.team .ch-infoie9 p a {
-    color: rgba(255, 255, 255, 0.7);
-    display: block;
-    font-family: "Open Sans",Arial,sans-serif;
-    font-size: 9px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    text-transform: uppercase;
-}
-.team .ch-infoie9:hover {
-    background-image: url("../img/rollie9_team.png");
-}
-.team .ch-infoie9:hover h3 {
-    display: block;
-}
-.team .ch-infoie9:hover p {
-    display: block;
-}
-.team .ch-infoie9:hover p a {
-    display: block;
-}
-.team .ch-infoie9 p a:hover {
-    color: #111;
-}
-.team .ch-itemie9 {
-    border-radius: 50%;
-    cursor: default;
-    height: 221px;
-    position: relative;
-    width: 100%;
+.navbar-top .list-inline > li {
+  border-left: 1px solid #fff;
+  padding: 0 10px;
 }
