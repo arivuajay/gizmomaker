@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{title}</title>
+        <title>{% block title %}פיתוח פטנטים פיתוח המצאה ומוצרים חדשים- גיזמו מייקר{% endblock %}</title>
         <meta name="viewport" content="width=device-width">
         <link href='http://fonts.googleapis.com/css?family=Alef:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,700,600' rel='stylesheet' type='text/css'>
@@ -154,7 +154,7 @@
                                         מלא את הפרטים ואחד מאיתנו יצור איתך קשר בזריזות:</p>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 team popup">
+                            {#<div class="col-lg-6 col-md-6 team popup">
                                 <h4 style="text-align: center;"><u>הצוות</u></h4>
                                 <div class="row">
                                     {% image '@GizmoBundle/Resources/public/images/nimrod.jpg' %}
@@ -216,8 +216,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
+                            </div>#}
+                            <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label for="cInputName">שם מלא</label>
                                     <input type="text" class="form-control" name="name" required="required" id="cInputName" />
