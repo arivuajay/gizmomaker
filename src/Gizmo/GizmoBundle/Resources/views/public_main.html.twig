@@ -21,6 +21,11 @@
                 }
             </style>
         {% endblock %}
+
+        {% block head_javascripts %}
+            <!-- Put this script in your <head> -->
+            <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+        {% endblock %}
     </head>
 
     <body dir="rtl">
@@ -41,18 +46,29 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{path('gizmo_home')}}"><span class="logo">גיזמו מייקר</span><br>פיתוח מוצרים וטכנולוגיות</a>
+                        <a class="navbar-brand" href="{{path('gizmo_home')}}">
+                            {% image '@GizmoBundle/Resources/public/images/logo.png' %}
+                            <img src="{{ asset_url }}" width="181" height="38" alt="גיזמו מייקר-פיתוח מוצרים וטכנולוגיות"  title="גיזמו מייקר-פיתוח מוצרים וטכנולוגיות"/>
+                            {% endimage %}
+                        </a>
                     </div>
                     <p class="navbar-text contact-info navbar-left">
-                        צור קשר<br>
-                        {% set ppc_source =  app.request.get('utm_source') %}
-                        {% set ppc_campaign =  app.request.get('utm_campaign') %}
-
-                        {% if (ppc_source|length > 0) or (ppc_campaign|length > 0) %}
-                            055-8874012
-                        {% else %}
-                            054-4745412
-                        {% endif %}
+                        <a href="javascript:void(0)" id="expand_phone_no">
+                            התקשר אלינו
+                            {% image '@GizmoBundle/Resources/public/images/phone.png' %}
+                            <img src="{{ asset_url }}" width="36" height="36" alt="">
+                            {% endimage %}
+                        </a>
+                        <span id="phone_block" class="hide">
+                            צור קשר<br>
+                            {% set ppc_source =  app.request.get('utm_source') %}
+                            {% set ppc_campaign =  app.request.get('utm_campaign') %}
+                            {% if (ppc_source|length > 0) or (ppc_campaign|length > 0) %}
+                                055-8874012
+                            {% else %}
+                                054-4745412
+                            {% endif %}
+                        </span>
                     </p>
                     <div class="collapse navbar-collapse header-collapse">
                         <ul class="nav nav-justified">
@@ -90,54 +106,7 @@
             </footer>
         </div>
 
-        {% block javascripts %}
-            {% javascripts
-    '@GizmoBundle/Resources/public/js/jquery-2.0.1.min.js'
-    '@GizmoBundle/Resources/public/js/bootstrap.js'
-            %}
-            <script src="{{ asset_url }}"></script>
-            {#        ***************************************************************
-            <!-- Google Code for Remarketing Tag -->
-            <!--------------------------------------------------
-            Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
-            --------------------------------------------------->#}
-            <script type="text/javascript">
-                /* <![CDATA[ */
-                var google_conversion_id = 1054807211;
-                var google_custom_params = window.google_tag_params;
-                var google_remarketing_only = true;
-                /* ]]> */
-            </script>
-            <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-            </script>
-            <noscript>
-            <div style="display:inline;">
-                <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1054807211/?value=0&amp;guid=ON&amp;script=0"/>
-            </div>
-            </noscript>
-            {#**********************************************************
 
-            Google analytics code:
-
-            **********************************************************#}
-            <script type="text/javascript">
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-10722522-6']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script');
-                    ga.type = 'text/javascript';
-                    ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-            {% endjavascripts %}
-
-        {% endblock %}
-
-        <!-- modals -->
         <div class="modal fade" id="contact-us" role="dialog" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -247,5 +216,78 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
+
+
+        {% block javascripts %}
+            {% javascripts
+    '@GizmoBundle/Resources/public/js/jquery-2.0.1.min.js'
+    '@GizmoBundle/Resources/public/js/bootstrap.js'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            {#        ***************************************************************
+            <!-- Google Code for Remarketing Tag -->
+            <!--------------------------------------------------
+            Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+            --------------------------------------------------->#}
+            <script type="text/javascript">
+                /* <![CDATA[ */
+                var google_conversion_id = 1054807211;
+                var google_custom_params = window.google_tag_params;
+                var google_remarketing_only = true;
+                /* ]]> */
+            </script>
+
+
+            <noscript>
+            <div style="display:inline;">
+                <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1054807211/?value=0&amp;guid=ON&amp;script=0"/>
+            </div>
+            </noscript>
+            {#**********************************************************
+
+            Google analytics code:
+
+            **********************************************************#}
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-10722522-6']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script');
+                    ga.type = 'text/javascript';
+                    ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+
+
+            <script type="text/javascript">
+                /* <![CDATA[ */
+
+                /* ]]> */
+            </script>
+
+            <!-- Call this function when the form submits -->
+            <script type="text/javascript">
+                /* <![CDATA[ */
+                $('#expand_phone_no').on('click', function() {
+                    $(this).addClass('hide');
+                    $(this).next('#phone_block').removeClass('hide');
+                    window.google_trackConversion({
+                        google_conversion_id: 1054807211,
+                        google_conversion_language: "en",
+                        google_conversion_format: "3",
+                        google_conversion_color: "ffffff",
+                        google_conversion_label: "yaLqCI6IsFkQq6n89gM",
+                        google_remarketing_only: false
+                    });
+                });
+                //]]>
+            </script>
+        {% endblock %}
     </body>
 </html>

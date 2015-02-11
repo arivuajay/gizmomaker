@@ -180,19 +180,14 @@
                             <h1 class="value">{{project.getName2()|e}}</h1>
                         </div>
                         <div class="project-short-description">
-                            <h4 class="value">{{project.getShortDescription()|e}}</h4>
+                            <h4 class="value">{{project.getTitle()|e}}</h4>
                         </div>
                         <div class="project-slider" dir="ltr">
-
                             {%  if(project.getSlides()|length) %}
-
                                 <div id="showcase" class="showcase" >
-
                                     {% for slide in project.getSlides() %}
                                         <div class="showcase-slide" >
-
                                             <div class="showcase-content">
-
                                                 {% if(slide.getType() == 'photo') %}
                                                     <img src="{{ slide.getWebPath() }}">
                                                 {% else %}
@@ -205,25 +200,18 @@
                                                 {% else %}
                                                     <span class="video-thumb">Video</span>
                                                 {% endif %}
-                                                <!-- The div below with the class .showcase-thumbnail-cover is used for the thumbnails active state. -->
                                                 <div class="showcase-thumbnail-cover"></div>
                                             </div>
                                         </div>
                                     {% endfor %}
-
                                 </div>
-
-
                             {% endif %}
-
-
                         </div>
                         <div class="project-full-description">
                             <span class="value">{{project.getFullDescription()|e}}</span>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-4 right-side-bar ">
-
                         <div class="side-bar-heading">
                             אודות הפרויקט
                         </div>

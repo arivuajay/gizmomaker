@@ -23,7 +23,7 @@
             text-align: center;
         }
         .project-item-thumb-wrap img{
-            max-height: 300px !important;
+            max-height: 182px !important;
             max-width: 100% !important;
         }
 
@@ -160,15 +160,15 @@
                                     <div class="bg-white project-item-desc">
                                         {% if(project.hasSlidePhoto()) %}
                                             {% if(project.getPageTitle()|trim) %}
-                                                <a href="{{ path('project_view',{'name2':project.getName2(),'code':project.getCode()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
                                             {% elseif(project.getTitle()|trim) %}
-                                                <a href="{{ path('project_view',{'name2':project.getName2(),'code':project.getCode()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"><h4>{{ project.getTitle() }}</h4></a>
                                                     {% endif %}
                                             <div class="project-item-thumb-wrap mb25">
-                                                <img src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                                <img width="243" height="182" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
                                             </div>
                                             {% if project.fullDescription|length > 200 %}
-                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'name2':project.getName2(),'code':project.getCode()}) }}">קרא עוד</a>
+                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}">קרא עוד</a>
                                             {% else %}
                                                 {{ project.fullDescription }}
                                             {% endif %}
