@@ -310,4 +310,4 @@ class ProjectSlide implements \JsonSerializable
         return (preg_match('/vimeo\.com/i', $url));
     }
 
-} 
+}

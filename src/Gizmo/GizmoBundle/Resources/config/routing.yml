@@ -11,9 +11,13 @@ gizmo_all_page:
     defaults: { _controller: controller.page:pageAction , title:null}
 
 project_view:
-    path: /project/view/{code}
-    defaults: { _controller: controller.project:viewAction }
+    path: /project/{code}/{name2}
+    defaults: { _controller: controller.project:viewAction}
 
+project_update:
+    path: /project/update
+    defaults: { _controller: controller.project:updateAction }
+    
 project_infinite_scroll:
     path: /project/search
     defaults: { _controller: controller.project:infiniteProjectsScrollAction }
@@ -21,6 +25,9 @@ project_infinite_scroll:
 contact_us:
         path: /contact
         defaults: { _controller: controller.contact:contactAction }
+contact_thankyou:
+        path: /thankyou
+        defaults: { _controller: controller.contact:thankyouAction }
 login:
     path: /auth/login
     defaults: { _controller: controller.auth:loginAction }

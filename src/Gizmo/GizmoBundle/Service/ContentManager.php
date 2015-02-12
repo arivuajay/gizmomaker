@@ -8,7 +8,6 @@
 
 namespace Gizmo\GizmoBundle\Service;
 
-
 use Lsw\ApiCallerBundle\Call\HttpGetJson;
 use Lsw\ApiCallerBundle\Caller\ApiCallerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -50,7 +49,7 @@ class ContentManager {
         if($title)
             $url .= '/'.urlencode($title);
 
-        $url .= '?from_domain='. 'http://gizmomaker.co.il/new/'.$section.'/&';
+        $url .= '?from_domain='. 'http://gizmomaker.co.il/'.$section.'/&';
 
         $tags_reg_exp = '^(?:\{right_menu\})|(?:\{top_menu\})|(?:\{cat_promote_[0-9]+\})|(?:\{categories\})|(?:\{box_none_fixed\})|(?:\{box_fixed\})|(?:\{title\})|(?:\{head\})|(?:\{name\})|(?:\{summary\})|(?:\{content\})|(?:\{(?:in|out)_(?:random|latest|related)_[0-9]+\})|(?:\{cat[0-9]+\}+)|(?:\{blog\})|(?:\{meta\})^';
 
@@ -87,4 +86,4 @@ class ContentManager {
         return $currentContent;
     }
 
-} 
+}

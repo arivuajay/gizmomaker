@@ -22437,8 +22437,8 @@ var NewAvatarSelect = React.createClass({displayName: 'NewAvatarSelect',
             browse_button: "uploader-btn",
             container: document.getElementById("uploader-btn-container"),
             url: Constants.WEB_API_ADD_AVATAR,
-            flash_swf_url: '/new/js/plupload/Moxie.swf',
-            silverlight_xap_url: '/new/js/plupload/Moxie.xap',
+            flash_swf_url: '/js/plupload/Moxie.swf',
+            silverlight_xap_url: '/js/plupload/Moxie.xap',
             multipart_params: {
                 'type':'photo'
             },
@@ -22550,8 +22550,8 @@ var NewSlideSelect = React.createClass({displayName: 'NewSlideSelect',
             browse_button: "uploader-btn",
             container: document.getElementById("uploader-btn-container"),
             url: Constants.WEB_API_ADD_SLIDE,
-            flash_swf_url: '/new/js/plupload/Moxie.swf',
-            silverlight_xap_url: '/new/js/plupload/Moxie.xap',
+            flash_swf_url: '/js/plupload/Moxie.swf',
+            silverlight_xap_url: '/js/plupload/Moxie.xap',
             multipart_params: {
                 'type':'photo'
             },
@@ -22655,10 +22655,10 @@ module.exports = NewSlideSelect;
 
 module.exports = {
 
-    WEB_API_LOAD_PROJECT : '/new/api/secured/project/get/'+PROJECT_CODE,
-    WEB_API_ADD_SLIDE: '/new/api/secured/project/add-slide/'+PROJECT_CODE,
-    WEB_API_SYNC_PROJECT:'/new/api/secured/project/sync/'+PROJECT_CODE,
-    WEB_API_ADD_AVATAR:'/new/api/secured/project/add-avatar/'+PROJECT_CODE,
+    WEB_API_LOAD_PROJECT : '/api/secured/project/get/'+PROJECT_CODE,
+    WEB_API_ADD_SLIDE: '/api/secured/project/add-slide/'+PROJECT_CODE,
+    WEB_API_SYNC_PROJECT:'/api/secured/project/sync/'+PROJECT_CODE,
+    WEB_API_ADD_AVATAR:'/api/secured/project/add-avatar/'+PROJECT_CODE,
 
     LOAD_PROJECT:'LOAD_PROJECT',
     SYNC_PROJECT:'SYNC_PROJECT'

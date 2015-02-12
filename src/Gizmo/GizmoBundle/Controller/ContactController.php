@@ -41,6 +41,14 @@ class ContactController {
             )
         ;
         $this->mailer->send($message);
-        return new RedirectResponse($request->headers->get('referer'));
+        return new RedirectResponse($this->router->generate('contact_thankyou'));
+    }
+
+    public function thankyouAction(){
+        $message = "תודה לך, ההודעה נשלחה";
+        return $this->templating->renderResponse(
+            'GizmoBundle:Page:thankyou.html.twig',
+            ['message'=> $message]
+        );
     }
 }

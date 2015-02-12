@@ -409,7 +409,7 @@ class User implements UserInterface, \Serializable, \JsonSerializable
     {
         return null === $this->avatar
             ? null
-            : '/new/' . $this->getUploadDir() . '/' . $this->avatar;
+            : '/' . $this->getUploadDir() . '/' . $this->avatar;
     }
 
     protected function getUploadRootDir()

@@ -40,8 +40,11 @@ class Project implements \JsonSerializable
             'shortDescription' => $this->shortDescription,
             'fullDescription' => $this->fullDescription,
             'title' => $this->title,
-            'pageTitle' => $this->pageTitle,
+//            'pageTitle' => $this->pageTitle,
+            'pageTitle' => $this->name2,
             'isPublished' => $this->isPublished,
+            'likeCnt' => $this->likeCnt,
+            'dislikeCnt' => $this->dislikeCnt,
             'code' => $this->code,
             'created' => $this->createdAt->format('Y-m-d'),
             'updated' => $this->updatedAt->format('Y-m-d'),
@@ -99,6 +102,17 @@ class Project implements \JsonSerializable
      * @ORM\Column(name="is_published", type="smallint", length=1)
      */
     private $isPublished = 0;
+
+    /**
+     * @ORM\Column(name="like_cnt", type="integer", length=11)
+     */
+    private $likeCnt;
+    /**
+     * @ORM\Column(name="dislike_cnt", type="integer", length=11)
+     */
+    private $dislikeCnt;
+
+    protected $ratioLikes;
 
 
     /**
@@ -230,6 +244,32 @@ class Project implements \JsonSerializable
         $this->isPublished = $isPublished;
     }
 
+    public function getLikeCnt()
+    {
+        return $this->likeCnt;
+    }
+
+    public function setLikeCnt($likeCnt)
+    {
+        $this->likeCnt = $likeCnt;
+    }
+    public function getDislikeCnt()
+    {
+        return $this->dislikeCnt;
+    }
+
+    public function setDislikeCnt($dislikeCnt)
+    {
+        $this->dislikeCnt = $dislikeCnt;
+    }
+
+    public function getRatioLikes()
+    {
+        $totalCnt = $this->likeCnt + $this->dislikeCnt;
+        return ($this->likeCnt / $totalCnt) * 100;
+    }
+
+
     /**
      * @return mixed
      */
@@ -284,6 +324,15 @@ class Project implements \JsonSerializable
     public function getShortDescription()
     {
         return $this->shortDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShortWordsDescription($limit = 20)
+    {
+        return implode(' ', array_slice(explode(' ', $this->fullDescription), 0, $limit));
+        return ;
     }
 
     /**
@@ -375,4 +424,4 @@ class Project implements \JsonSerializable
         }
         return null;
     }
-} 
+}
