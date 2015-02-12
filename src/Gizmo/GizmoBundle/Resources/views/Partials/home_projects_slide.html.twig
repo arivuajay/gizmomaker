@@ -8,7 +8,7 @@
                     <h4>{{ randomProject.getTitle() }}</h4>
                 {% endif %}
                 <div class="project-item-thumb-wrap mb25">
-                    <img src="{{ randomProject.getRandomSlidePhoto().getWebPath() }}" style="width:100%;">
+                    <img alt="{{ randomProject.getPageTitle()|e }}" src="{{ randomProject.getRandomSlidePhoto().getWebPath() }}" style="width:100%;">
                 </div>
                 {% if randomProject.fullDescription|length > 200 %}
                     {{ randomProject.fullDescription|slice(0, 200)}}
@@ -17,7 +17,7 @@
                 {% endif %}
             </a>
         {% endif %}
-    </div>
+    </div> 
 {% endfor %}
 
 

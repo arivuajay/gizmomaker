@@ -137,7 +137,7 @@
         <div class="container">
             <div class="col-lg-12 col-md-12 white-box" style="margin-bottom: 30px;padding-top: 0px; margin-top: 0;">
                 <div class="row">
-                    <h3 style="text-align: center; padding-bottom:10px; "><u> גלריית פרויקטים ומוצרים שפיתחנו:</u></h3>
+                    <h1 style="text-align: center; padding-bottom:10px; "><u> גלריית פרויקטים ומוצרים שפיתחנו:</u></h1>
                     <p style="font-size: 16px;">
                         בעמוד זה מוצגים חלק קטן מהפרויקטים והמוצרים אשר פיתחנו במשרד ההנדסה גיזמו-מייקר בשנים האחרונות.
                         משרד גיזמו-מייקר הוביל מעל 400 פרויקטים בסדרי גודל שונים.
@@ -165,14 +165,14 @@
                                                 <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"><h4>{{ project.getTitle() }}</h4></a>
                                                     {% endif %}
                                             <div class="project-item-thumb-wrap mb25">
-                                                <img width="243" height="182" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                                <img width="243" height="182" alt="{{ project.getPageTitle()|e }}" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
                                             </div>
                                             {% if project.fullDescription|length > 200 %}
                                                 {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}">קרא עוד</a>
                                             {% else %}
                                                 {{ project.fullDescription }}
                                             {% endif %}
-                                        {% endif %}
+                                        {% endif %} 
                                     </div>
                                 </div>
                             {% endfor %}

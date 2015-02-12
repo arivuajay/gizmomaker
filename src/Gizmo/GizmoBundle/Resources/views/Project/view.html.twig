@@ -187,16 +187,16 @@
                                 <div id="showcase" class="showcase" >
                                     {% for slide in project.getSlides() %}
                                         <div class="showcase-slide" >
-                                            <div class="showcase-content">
+                                            <div class="showcase-content"> 
                                                 {% if(slide.getType() == 'photo') %}
-                                                    <img src="{{ slide.getWebPath() }}">
+                                                    <img alt="{{project.getTitle()|e}}" src="{{ slide.getWebPath() }}">
                                                 {% else %}
                                                     {{slide.getValue()|raw}}
                                                 {% endif %}
                                             </div>
                                             <div class="showcase-thumbnail">
                                                 {% if(slide.getType() == 'photo') %}
-                                                    <img src="{{ slide.getWebPath() }}" style="width:75px" />
+                                                    <img alt="{{project.getTitle()|e}}" src="{{ slide.getWebPath() }}" style="width:75px" />
                                                 {% else %}
                                                     <span class="video-thumb">Video</span>
                                                 {% endif %}
@@ -236,10 +236,10 @@
                                         פרויקט על ידי:
                                     </div>
                                     {% if(project.getUser().getAvatarWebPath()) %}
-                                        <img src="{{project.getUser().getAvatarWebPath()}}">
+                                        <img alt="{{project.getUser().getName()}}" src="{{project.getUser().getAvatarWebPath()}}">
                                     {% else %}
                                         {% image '@GizmoBundle/Resources/public/images/avatar.png' %}
-                                        <img src="{{ asset_url }}" style="width:100%">
+                                        <img alt="{{project.getUser().getName()}}" src="{{ asset_url }}" style="width:100%">
                                         {% endimage %}
                                     {% endif %}
                                     <div class="caption">{{project.getUser().getName()}}</div>
