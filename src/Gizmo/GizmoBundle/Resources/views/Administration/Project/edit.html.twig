@@ -1,0 +1,167 @@
+{% extends 'GizmoBundle::public_main.html.twig' %}
+
+
+{% block page_titles %}
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets
+    'bundles/gizmo/css/common.css'
+    %}
+    <link href="{{ asset_url }}" rel="stylesheet" media="screen">
+    {% endstylesheets %}
+    <style>
+
+        .side-bar-heading {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 4px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .project-side-box {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .left-side-bar .project-side-box:last-child, .right-side-bar .project-side-box:last-child {
+            border-bottom: none;
+        }
+
+        .left-side-bar {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+                .confidential-status {
+            text-align: center;
+        }
+
+        .confidential-status label {
+            min-width: 70px;;
+        }
+
+        .like-actions {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .like-actions a, .like-actions a:hover {
+            text-decoration: none;
+            display: inline-block;
+            padding: 0 10px;;
+            color: #222222;
+        }
+
+        span.video-thumb {
+            display: block;
+            line-height: 55px;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+
+        span.video-thumb {
+            display: block;
+            line-height: 55px;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+
+        .make-slider {
+            height: 260px;
+            background: #d5d5d5;
+            position: relative;
+            cursor: pointer;
+            margin: 15px 0;;
+        }
+
+        .make-slider .indicator {
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -40px;
+            left: 50%;
+            margin-left: -40px;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            -moz-border-radius: 40px;
+            border-radius: 40px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .indicator-desc {
+            text-align: center;
+            padding-top: 180px;
+            font-size: 20px;;
+        }
+
+        #add-slide-item .tab-pane {
+            min-height: 200px;
+            border: 1px solid #ddd;
+            border-top: none;
+            padding: 20px;
+            background: #fff;
+        }
+
+        #change-profile-action {
+            position: absolute;
+            background: #fff;
+            border: #ccc;
+            padding: 2px;
+            bottom: 5px;
+            left: 15px;
+            text-decoration: none;
+        }
+
+        .project-side-box-title.locked {
+            padding-left: 50px;
+            background: url('{{asset('img/locked.png')}}') no-repeat;
+        }
+
+        .showcase-thumbnail {
+            position: relative !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        PROJECT_CODE = '{{ project.getCode() }}';
+
+        {% image '@GizmoBundle/Resources/public/images/preview.png' %}
+        PREVIEW_HOLDER ="{{ asset_url }}";
+        {% endimage %}
+    </script>
+    <script src="/new/js/plupload/plupload.full.min.js"></script>
+    <script src="{{ asset('js/jquery.aw-showcase.js') }}"></script>
+    {% javascripts
+    '@GizmoBundle/Resources/public/js/project-editor.js'
+
+    %}
+    <script src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+
+
+
+{% endblock %}
+
+{% block body %}
+    <div class="admin-preview" id="project-editor-app" dir="rtl" style="margin-top:50px;">
+
+    </div>
+{% endblock %}

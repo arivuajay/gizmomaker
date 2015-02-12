@@ -1,0 +1,17 @@
+{% for randomProject in randomProjects %}
+    <div class="project-item clearfix"  dir="rtl">
+        {% if(randomProject.hasSlidePhoto()) %}
+            {% if(randomProject.getPageTitle()|trim) %}
+                <h4><a href="{{ path('project_view',{'name2':randomProject.getName2(),'code':randomProject.getCode()}) }}">{{ randomProject.getPageTitle()|e }}</a></h4>
+            {% elseif(randomProject.getTitle()|trim) %}
+                <h4><a href="{{ path('project_view',{'name2':randomProject.getName2(),'code':randomProject.getCode()}) }}">{{ randomProject.getTitle() }}</a></h4>
+            {% endif %}
+            <div class="thumbnail project-item-thumb">
+                <img alt="{{ randomProject.getPageTitle()|e }}" src="{{ randomProject.getRandomSlidePhoto().getWebPath() }}" >
+            </div>
+            <div class="caption">
+                {{ randomProject.shortWordsDescription(20) }} <a href="{{ path('project_view',{'name2':randomProject.getName2(),'code':randomProject.getCode()}) }}">קרא עוד</a>
+            </div>
+        {% endif %}
+    </div>
+{% endfor %} 

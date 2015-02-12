@@ -1,0 +1,185 @@
+{% extends 'GizmoBundle::public_main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('js/slick/slick.css') }}" rel="stylesheet" media="screen">
+
+    <style>
+
+
+
+        #projects-slide {
+            padding-top: 20px;
+            min-height: 400px;
+        }
+
+        .slick-slide {
+            background: #fff;
+            margin: 0 10px;
+            padding: 10px;
+            min-height: 400px;
+        }
+        .project-item-thumb-wrap{
+            text-align: center;
+        }
+        .project-item-thumb-wrap img{
+            max-height: 182px !important;
+            max-width: 100% !important;
+        }
+
+        /* Arrows */
+        .slick-prev, .slick-next {
+            position: absolute;
+            display: block;
+            height: 70px;
+            width: 70px;
+            line-height: 0;
+            font-size: 0;
+            cursor: pointer;
+            background: transparent;
+            color: transparent;
+            top: 50%;
+            margin-top: -10px;
+            padding: 0;
+            border: none;
+            outline: none;
+        }
+
+        .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+            outline: none;
+            background: transparent;
+            color: transparent;
+        }
+
+        .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+            opacity: 1;
+        }
+
+        .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+            opacity: 0.25;
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-family: "slick";
+            font-size: 70px;
+            line-height: 1;
+            color: white;
+            opacity: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slick-prev {
+            left: -75px;
+        }
+
+        [dir="rtl"] .slick-prev {
+            left: auto;
+            right: -75px;
+        }
+
+        .slick-prev:before {
+            content: "←";
+        }
+
+        [dir="rtl"] .slick-prev:before {
+            content: "→";
+        }
+
+        .slick-next {
+            right: -75px;
+        }
+
+        [dir="rtl"] .slick-next {
+            left: -75px;
+            right: auto;
+        }
+
+        .slick-next:before {
+            content: "→";
+        }
+
+        [dir="rtl"] .slick-next:before {
+            content: "←";
+        }
+
+        .infinite-slide{
+            background: #e9eaed;
+            padding:40px 0 0;
+            margin-bottom:-40px;
+
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#<script src="{{ asset('js/slick/slick.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#projects-slide").slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: false,
+                onInit: function () {
+                    $('.slick-slide').height($('#projects-slide').height());
+                }
+            });
+
+        });
+    </script>#}
+{% endblock %}
+
+{% block full_top %}
+    <div class="infinite-slide">
+        <div class="container">
+            <div class="col-lg-12 col-md-12 white-box" style="margin-bottom: 30px;padding-top: 0px; margin-top: 0;">
+                <div class="row">
+                    <h1 style="text-align: center; padding-bottom:10px; "><u> גלריית פרויקטים ומוצרים שפיתחנו:</u></h1>
+                    <p style="font-size: 16px;">
+                        בעמוד זה מוצגים חלק קטן מהפרויקטים והמוצרים אשר פיתחנו במשרד ההנדסה גיזמו-מייקר בשנים האחרונות.
+                        משרד גיזמו-מייקר הוביל מעל 400 פרויקטים בסדרי גודל שונים.
+                        חלק מהפרויקטים הללו בוצעו עבור לקוחותינו וחלקם כפרויקטים פנימיים מתוך רעיונות שהונבטו במשרד.
+                        מספר מוצרים מתוך הפרויקטים המוצגים נחלו הצלחה שיווקית ואף הפכו לחברות מצליחות בפני עצמן.
+                        בגיזמו אנו מאמינים שהמעורבות שלנו בכלכך הרבה פרויקטים שונים, מעניקה לנו ידע וניסיון בעלי ערך רב.
+                        ראינו עם השנים פרויקטים מוצלחים יותר ומוצלחים פחות, ליווינו את התהליך פעמים רבות ולמדנו כיצד להפוך רעיונות למוצרים מצליחים.
+                        מספר הפרויקטים הרב והניסיון המצטבר שלנו ושל כלל לקוחותינו, מאפשר לנו ללמוד בזוית רחבה על ההחלטות שמביאות בדר"כ להצלחה מסחרית.
+                        הידע המקצועי הזה הוא שמנחה אותנו בכל פרויקט חדש ומאפשר לנו לפתח ולקדם מוצרים מצליחים בצורה עיקבית.
+                    </p>
+                </div>
+            </div>
+
+            <div dir="ltr" class="row">
+                <div id="projects-slide">
+                    {% for row in projects|batch(4) %}
+                        <div clas="row">
+                            {% for project in row %}
+                                <div class="project-item col-md-3 col-lg-3" dir="rtl">
+                                    <div class="bg-white project-item-desc">
+                                        {% if(project.hasSlidePhoto()) %}
+                                            {% if(project.getPageTitle()|trim) %}
+                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                                            {% elseif(project.getTitle()|trim) %}
+                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                                                    {% endif %}
+                                            <div class="project-item-thumb-wrap mb25">
+                                                <img width="243" height="182" alt="{{ project.getPageTitle()|e }}" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                            </div>
+                                            {% if project.fullDescription|length > 200 %}
+                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}">קרא עוד</a>
+                                            {% else %}
+                                                {{ project.fullDescription }}
+                                            {% endif %}
+                                        {% endif %} 
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

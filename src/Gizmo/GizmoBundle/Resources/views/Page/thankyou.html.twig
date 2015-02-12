@@ -1,0 +1,77 @@
+{% extends 'GizmoBundle::public_main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .side-bar-heading{
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 4px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .project-side-box{
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .right-side-bar .project-side-box:last-child{
+            border-bottom: none;
+        }
+
+        .main-content{
+            border:3px solid #ddd;
+            padding:15px;
+            border-radius: 4px;
+        }
+        .main-bar{
+            width: 470px;
+            float: left;
+            padding:0 15px 0 0;
+            border-right: 1px solid #ddd;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Google Code for Gizmo_contact Conversion Page -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1054807211;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "ffffff";
+        var google_conversion_label = "jd_oCL2ysFkQq6n89gM";
+        var google_remarketing_only = false;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+        <img alt="Google Analytics" height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1054807211/?label=jd_oCL2ysFkQq6n89gM&amp;guid=ON&amp;script=0"/>
+    </div>
+    </noscript> 
+{% endblock %}
+
+
+{% block body %}
+    <div class="content-page row  project_page">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">הפרויקטים שלנו</div>
+                <div class="panel-body random_project_list">
+                    {random_projects}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+            <div class="main-content clearfix">
+                <h2>"{{message}}"</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
