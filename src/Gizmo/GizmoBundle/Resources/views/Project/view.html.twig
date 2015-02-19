@@ -60,14 +60,14 @@
             display: block;
             line-height: 55px;
             font-size: 20px;
-            padding: 0 10px;
+            padding: 22px 19px;
         }
 
         span.video-thumb{
             display: block;
             line-height: 55px;
             font-size: 20px;
-            padding: 0 10px;
+            padding: 22px 19px;
         }
         .make-slider{
             height:260px;
@@ -106,6 +106,346 @@
         .project-title h2{
             margin-top:0;
         }
+        
+        {#
+        .showcase{
+            padding-bottom: 10px;
+        }
+        
+        .showcase-thumbnail{
+            margin: 5px;
+        }
+        
+        
+        
+.showcase-arrow-next {
+    background-position: -34px 0;
+    right: -56px;
+}
+.showcase-arrow-previous, .showcase-arrow-next {
+    cursor: pointer;
+    height: 33px;
+    position: absolute;
+    top: 220px;
+    width: 33px;
+}
+
+.showcase-arrow-previous {
+    left: -60px;
+}
+.showcase-arrow-previous, .showcase-arrow-next {
+    background-image: url('{{asset('images/arrows.png')}}');
+    cursor: pointer;
+    height: 33px;
+    position: absolute;
+    top: 220px;
+    width: 33px;
+}
+#}
+        
+.project-slider{
+    width: 600px;
+}
+
+
+
+/* Showcase
+-------------*/
+
+
+/* This class is removed after the showcase is loaded */
+/* Assign the correct showcase height to prevent loading jumps in IE */
+.showcase-load
+{
+	height: 470px; /* Same as showcase javascript option */
+	overflow: hidden;
+}
+
+/* Container when content is shown in slider */
+.showcase
+{
+	position: relative;
+	margin: auto;
+}
+
+
+	/* Navigation arrows */
+	.showcase-arrow-previous, .showcase-arrow-next
+	{
+		position: absolute;
+		background-image: url('{{asset('images/arrows.png')}}');
+		width: 33px;
+		height: 33px;
+		top: 220px;
+		cursor: pointer;
+	}
+	
+	.showcase-arrow-previous
+	{
+		left: -60px;
+	}
+	
+	.showcase-arrow-previous:hover
+	{
+		background-position: 0px -34px;
+	}
+	
+	.showcase-arrow-next
+	{
+		right: -56px;
+		background-position: -34px 0;
+	}
+	
+	.showcase-arrow-next:hover
+	{
+		background-position: -34px -34px;
+	}
+	
+	/* Content */
+	.showcase-content
+	{
+		text-align: center;
+	}
+		
+		.showcase-content-wrapper
+		{
+			text-align: center;
+{#			height: 470px;
+			width: 700px;#}
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		/* Styling the tooltips */
+		.showcase-plus-anchor
+		{
+{#			background-image: url('../images/plus.png');#}
+			background-repeat: no-repeat;
+		}
+		
+		.showcase-plus-anchor:hover
+		{
+			background-position: -32px 0;
+		}
+		
+		div.showcase-tooltip
+		{
+			background-color: #fff;
+			color: #000;
+			text-align: left;
+			padding: 5px 8px;
+{#			background-image: url(../images/white-opacity-80.png);#}
+		}
+		
+		/* Styling the caption */
+		.showcase-caption
+		{
+			color: #000;
+			padding: 8px 15px;
+			text-align: left;
+			position: absolute;
+			bottom: 10px; left: 10px; right: 10px;
+			display: none;
+{#			background-image: url(../images/white-opacity-80.png);#}
+		}
+		
+	.showcase-onepage .showcase-content
+	{
+		margin-bottom: 10px;
+	}
+	
+	/* Button Wrapper */
+	.showcase-button-wrapper
+	{
+		clear: both;
+		margin-top: 10px;
+		text-align: center;
+	}
+	
+		.showcase-button-wrapper span
+		{
+			margin-right: 3px;
+			padding: 2px 5px 0px 5px;
+			cursor: pointer;
+			font-size: 12px;
+			color: #444444;
+		}
+	
+		.showcase-button-wrapper span.active
+		{
+			color: #fff;
+		}
+	
+	/* Thumbnails */
+
+	
+	.showcase-thumbnail-wrapper
+	{
+		overflow: hidden;
+	}
+		
+		.showcase-thumbnail
+		{
+			width: 95px;
+			height: 100px;
+			cursor: pointer;
+			border: solid 1px #333;
+			position: relative;
+		}
+		
+			.showcase-thumbnail-caption
+			{
+				position: absolute;
+				bottom: 2px;
+				padding-left: 10px;
+				padding-bottom: 5px;
+			}
+			
+			.showcase-thumbnail-content
+			{
+				padding: 10px;
+				text-align: center;
+				padding-top: 25px;
+			}
+			
+			.showcase-thumbnail-cover
+			{
+{#				background-image: url(../images/black-opacity-40.png);#}
+				position: absolute;
+				top: 0; bottom: 0; left: 0; right: 0;
+			}
+		
+		.showcase-thumbnail:hover
+		{
+			border: solid 1px #999;
+		}
+		
+			.showcase-thumbnail:hover .showcase-thumbnail-cover
+			{
+				display: none;
+			}
+		
+		.showcase-thumbnail.active
+		{
+			border: solid 1px #999;
+		}
+		
+			.showcase-thumbnail.active .showcase-thumbnail-cover
+			{
+				display: none;
+			}
+	
+	.showcase-thumbnail-wrapper-horizontal
+	{
+		padding: 10px;
+	}
+	
+		.showcase-thumbnail-wrapper-horizontal .showcase-thumbnail
+		{
+			margin-right: 10px;
+			width: 100px;
+		}
+	
+	.showcase-thumbnail-wrapper-vertical
+	{
+		padding: 10px;
+	}
+	
+		.showcase-thumbnail-wrapper-vertical .showcase-thumbnail
+		{
+			margin-bottom: 10px;
+		}
+		
+	.showcase-thumbnail-button-backward,
+	.showcase-thumbnail-button-forward
+	{
+		padding: 7px;
+		cursor: pointer;
+	}
+	
+	.showcase-thumbnail-button-backward
+	{
+		padding-bottom: 0px;
+		padding-right: 0px;
+	}
+	
+		.showcase-thumbnail-button-backward .showcase-thumbnail-vertical,
+		.showcase-thumbnail-button-forward .showcase-thumbnail-vertical,
+		.showcase-thumbnail-button-forward .showcase-thumbnail-horizontal,
+		.showcase-thumbnail-button-backward .showcase-thumbnail-horizontal
+		{
+			background-image: url('{{asset('images/arrows-small.png')}}');
+			background-repeat: no-repeat;
+			display: block;
+			width: 17px;
+			height: 17px;
+		}
+		
+		.showcase-thumbnail-button-backward .showcase-thumbnail-vertical
+		{
+			background-position: 0 -51px;
+			margin-left: 55px;
+		}
+		.showcase-thumbnail-button-backward:hover .showcase-thumbnail-vertical
+		{
+			background-position: -17px -51px;
+		}
+		
+		.showcase-thumbnail-button-forward .showcase-thumbnail-vertical
+		{
+			background-position: 0 -34px;
+			margin-left: 55px;
+		}
+		.showcase-thumbnail-button-forward:hover .showcase-thumbnail-vertical
+		{
+			background-position: -17px -34px;
+		}
+		
+		.showcase-thumbnail-button-backward .showcase-thumbnail-horizontal
+		{
+			background-position: 0 -17px;
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
+		.showcase-thumbnail-button-backward:hover .showcase-thumbnail-horizontal
+		{
+			background-position: -17px -17px;
+		}
+		
+		.showcase-thumbnail-button-forward .showcase-thumbnail-horizontal
+		{
+			background-position: 0 0;
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
+		.showcase-thumbnail-button-forward:hover .showcase-thumbnail-horizontal
+		{
+			background-position: -17px 0;
+		}
+		
+		/* Hide button text */
+		.showcase-thumbnail-button-forward span span,
+		.showcase-thumbnail-button-backward span span
+		{
+			display: none;
+		}
+	
+
+
+/* Clear (used for horizontal thumbnails)
+-------------------------------------------*/
+
+.clear
+{
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	float: none;
+}
+
 
 
     </style>
@@ -120,31 +460,32 @@
     {% endjavascripts %}
     <script>
         $(function() {
-            $("#showcase").awShowcase(
+             $("#showcase").awShowcase(
                     {
-                        content_width: '100%',
-                        auto: true,
-                        interval: 3000,
-                        continuous: true,
-                        loading: true,
-                        arrows: false,
-                        buttons: false,
-                        btn_numbers: false,
-                        keybord_keys: true,
-                        mousetrace: false, /* Trace x and y coordinates for the mouse */
-                        pauseonover: true,
-                        stoponclick: false,
-                        transition: 'hslide', /* hslide/vslide/fade */
-                        transition_delay: 0,
-                        transition_speed: 500,
-                        show_caption: 'onload', /* onload/onhover/show */
-                        thumbnails: true,
-                        thumbnails_position: 'outside-last', /* outside-last/outside-first/inside-last/inside-first */
-                        thumbnails_direction: 'horizontal', /* vertical/horizontal */
-                        thumbnails_slidex: 2, /* 0 = auto / 1 = slide one thumbnail / 2 = slide two thumbnails / etc. */
-                        dynamic_height: false, /* For dynamic height to work in webkit you need to set the width and height of images in the source. Usually works to only set the dimension of the first slide in the showcase. */
-                        speed_change: true, /* Set to true to prevent users from swithing more then one slide at once. */
-                        viewline: false /* If set to true content_width, thumbnails, transition and dynamic_height will be disabled. As for dynamic height you need to set the width and height of images in the source. */
+                        content_width:		580,
+                        content_height:			400,
+                        auto:					true,
+                        interval:				3000,
+                        continuous:				true,
+                        loading:				true,
+                        arrows:					false,
+                        buttons:				false,
+                        btn_numbers:			false,
+                        keybord_keys:			true,
+                        mousetrace:				false, /* Trace x and y coordinates for the mouse */
+                        pauseonover:			true,
+                        stoponclick:			false,
+                        transition:				'hslide', /* hslide/vslide/fade */
+                        transition_delay:		0,
+                        transition_speed:		500,
+                        show_caption:			'onload', /* onload/onhover/show */
+                        thumbnails:				true,
+                        thumbnails_position:	'outside-last', /* outside-last/outside-first/inside-last/inside-first */
+                        thumbnails_direction:	'horizontal', /* vertical/horizontal */
+                        thumbnails_slidex:		2, /* 0 = auto / 1 = slide one thumbnail / 2 = slide two thumbnails / etc. */
+                        dynamic_height:			false, /* For dynamic height to work in webkit you need to set the width and height of images in the source. Usually works to only set the dimension of the first slide in the showcase. */
+                        speed_change:			true, /* Set to true to prevent users from swithing more then one slide at once. */
+                        viewline:				false /* If set to true content_width, thumbnails, transition and dynamic_height will be disabled. As for dynamic height you need to set the width and height of images in the source. */
 
                     });
 
@@ -164,7 +505,7 @@
     <div class="content-page row  project_page">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">הפרויקטים שלנו</div>
+                <div class="panel-heading">הפרויקטי�? שלנו</div>
                 <div class="panel-body random_project_list">
                     {random_projects}
                 </div>
@@ -188,15 +529,22 @@
                                     {% for slide in project.getSlides() %}
                                         <div class="showcase-slide" >
                                             <div class="showcase-content"> 
+                                                
+                                                {% if(project.getTitle() != '') %}
+                                                {% set image_alt = project.getTitle() %}
+                                                {% else %}
+                                                {% set image_alt = project.getName2() %}    
+                                                {% endif %}
+                                                
                                                 {% if(slide.getType() == 'photo') %}
-                                                    <img alt="{{project.getTitle()|e}}" src="{{ slide.getWebPath() }}">
+                                                    <img alt="{{ image_alt|e }}" src="{{ slide.getWebPath() }}">
                                                 {% else %}
                                                     {{slide.getValue()|raw}}
                                                 {% endif %}
                                             </div>
                                             <div class="showcase-thumbnail">
                                                 {% if(slide.getType() == 'photo') %}
-                                                    <img alt="{{project.getTitle()|e}}" src="{{ slide.getWebPath() }}" style="width:75px" />
+                                                    <img alt="{{image_alt|e}}" src="{{ slide.getWebPath() }}" style="width:100px; height: 100px;" />
                                                 {% else %}
                                                     <span class="video-thumb">Video</span>
                                                 {% endif %}
@@ -213,7 +561,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 right-side-bar ">
                         <div class="side-bar-heading">
-                            אודות הפרויקט
+                            �?ודות הפרויקט
                         </div>
                         <div class="project-side-box">
                             <div class="project-side-box-content" style="" dir="ltr">

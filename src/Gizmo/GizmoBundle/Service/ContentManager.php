@@ -57,9 +57,15 @@ class ContentManager {
             $url .= urlencode($matches[0]).'='.'1&';
             return $matches[0];
         }, $currentContent);
-
         $result = (array) $this->apiCaller->call(new HttpGetJson($url,$parameters));
-
+//        echo '<pre>'; print_r($result);  exit;
+        $doc = new \DOMDocument();
+        $doc->loadHTML($result['{content}']);
+        $els = $doc->getElementsByTagName('h1');
+        if($els->length == 0){
+            $h1_title = '<h1>'.$result['{title}'].'</h1>';
+            $result['{content}'] = $h1_title.$result['{content}'];
+        }
 
         $currentContent = preg_replace_callback($tags_reg_exp, function($matches) use($result){
 
@@ -68,6 +74,7 @@ class ContentManager {
             }
             return '';
         }, $currentContent);
+//        print_r($currentContent);  exit;
 
 
         return $currentContent;

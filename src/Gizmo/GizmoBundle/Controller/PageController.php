@@ -45,10 +45,9 @@ class PageController {
     public function pageAction($category, $title,  Request $request){
         $url_title = str_replace('_',' ', $category);
         $url_category = str_replace('_',' ', $title);
-
         return $this->templating->renderResponse(
             'GizmoBundle:Page:page.html.twig',
-            array('url_category'=>$url_category,'url_title'=> $url_title)
+            array('url_category'=>$url_category,'url_title'=> $url_title, 'link_cat'=>$title)
         );
     }
 

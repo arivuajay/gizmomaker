@@ -9,6 +9,7 @@
 
 namespace Gizmo\GizmoBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Gizmo\GizmoBundle\Entity\Project;
 use Gizmo\GizmoBundle\Entity\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -39,7 +40,15 @@ class ProjectController {
         $this->em = $em;
     }
 
-    public function viewAction(Request $request, Project $project) {
+    public function viewAction($code , $name2) {
+        $project = $this->em->getRepository('GizmoBundle:Project')->findOneBy(array('code' => $code));
+        
+        if (!$project) {
+            throw $this->createNotFoundException(
+                'No project found'
+            );
+        }
+
         return $this->templating->renderResponse(
                         'GizmoBundle:Project:view.html.twig', ['project' => $project]
         );
@@ -94,6 +103,6 @@ class ProjectController {
         $this->em->persist($model);
         $this->em->flush();
 
-        return new RedirectResponse($this->router->generate('project_view', array('name2'=>$model->getName2(),"code" => $model->getCode())));
+        return new RedirectResponse($this->router->generate('project_view', array('name2'=>$model->getName2URL(),"code" => $model->getCode())));
     }
 }

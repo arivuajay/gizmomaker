@@ -1,7 +1,7 @@
 {% for randomProject in randomProjects %}
     <div class="project-item clearfix" dir="rtl">
         {% if(randomProject.hasSlidePhoto()) %}
-            <a href="{{ path('project_view',{'name2':randomProject.getName2(),'code':randomProject.getCode()}) }}">
+            <a href="{{ path('project_view',{'code':randomProject.getCode(), 'name2':randomProject.getName2URL()}) }}">
                 {% if(randomProject.getPageTitle()|trim) %}
                     <h4>{{ randomProject.getPageTitle()|e }}</h4>
                 {% elseif(randomProject.getTitle()|trim) %}

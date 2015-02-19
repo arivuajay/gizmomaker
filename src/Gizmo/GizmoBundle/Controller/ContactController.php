@@ -27,7 +27,7 @@ class ContactController {
         $message = \Swift_Message::newInstance()
             ->setSubject('Contact infomation')
             ->setFrom('notifications@gizmomaker.co.il')
-            ->setTo(array('nimrod.rotem@gmail.com','asanka@ninearts.com'))
+            ->setTo(array('nadesh@arkinfotec.com', 'rajharajesuwari@gmail.com'))
             ->setBody(
                 $this->templating->render(
                     'GizmoBundle:Emails:contact_form.html.twig',
@@ -35,7 +35,9 @@ class ContactController {
                         'name'=>$request->get('name'),
                         'email'=>$request->get('email'),
                         'phone'=>$request->get('phone'),
-                        'message'=>$request->get('message')
+                        'message'=>$request->get('message'),
+                        'referrer_uri'=>$request->get('referrer_uri'),
+                        'current_uri'=>$request->get('current_uri'),
                     )
                 ),'text/html'
             )

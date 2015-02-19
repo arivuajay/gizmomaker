@@ -1,4 +1,5 @@
 {% extends 'GizmoBundle::public_main.html.twig' %}
+{% block title %}{{ 'צפה בפרויקטים' }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -23,9 +24,16 @@
             text-align: center;
         }
         .project-item-thumb-wrap img{
-            max-height: 182px !important;
+            height: 182px !important;
             max-width: 100% !important;
         }
+		
+		.project-item-desc a.project-title h4{
+width: 96%;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
 
         /* Arrows */
         .slick-prev, .slick-next {
@@ -160,15 +168,22 @@
                                     <div class="bg-white project-item-desc">
                                         {% if(project.hasSlidePhoto()) %}
                                             {% if(project.getPageTitle()|trim) %}
-                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
+                                                <a class="project-title" href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2URL()}) }}"> <h4>{{ project.getPageTitle()|e }}</h4></a>
                                             {% elseif(project.getTitle()|trim) %}
-                                                <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}"><h4>{{ project.getTitle() }}</h4></a>
+                                                <a class="project-title" href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2URL()}) }}"><h4>{{ project.getTitle() }}</h4></a>
                                                     {% endif %}
                                             <div class="project-item-thumb-wrap mb25">
-                                                <img width="243" height="182" alt="{{ project.getPageTitle()|e }}" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
+                                                
+                                                {% if(project.getPageTitle() != '') %}
+                                                {% set image_alt = project.getPageTitle()|trim %}
+                                                {% else %}
+                                                {% set image_alt = project.getTitle()|trim %}    
+                                                {% endif %}
+                                                
+                                                <img width="243" height="182" alt="{{ image_alt |e }}" class="img-responsive" src="{{ project.getRandomSlidePhoto().getWebPath() }}">
                                             </div>
                                             {% if project.fullDescription|length > 200 %}
-                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2()}) }}">קרא עוד</a>
+                                                {{ project.fullDescription|slice(0, 200)}} <a href="{{ path('project_view',{'code':project.getCode(),'name2':project.getName2URL()}) }}">קרא עוד</a>
                                             {% else %}
                                                 {{ project.fullDescription }}
                                             {% endif %}

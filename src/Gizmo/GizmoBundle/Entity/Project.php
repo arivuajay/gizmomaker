@@ -106,11 +106,11 @@ class Project implements \JsonSerializable
     /**
      * @ORM\Column(name="like_cnt", type="integer", length=11)
      */
-    private $likeCnt;
+    private $likeCnt = 0;
     /**
      * @ORM\Column(name="dislike_cnt", type="integer", length=11)
      */
-    private $dislikeCnt;
+    private $dislikeCnt = 0;
 
     protected $ratioLikes;
 
@@ -292,6 +292,19 @@ class Project implements \JsonSerializable
     public function getName2()
     {
         return $this->name2;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getName2URL()
+    {
+        $nametourl = $this->name2;
+        $search = array('%20', '/', ' ');
+        $replace = array('_', '_', '_');
+        $nametourl = str_replace($search, $replace, $nametourl);
+        
+        return $nametourl;
     }
 
     /**

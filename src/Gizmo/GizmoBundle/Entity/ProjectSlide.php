@@ -177,7 +177,7 @@ class ProjectSlide implements \JsonSerializable
     {
         return null === $this->path
             ? null
-            : '/new/' . $this->getUploadDir() . '/' . $this->path;
+            : $this->getUploadDir() . '/' . $this->path;
     }
 
     protected function getUploadRootDir()
@@ -191,7 +191,7 @@ class ProjectSlide implements \JsonSerializable
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'project_pictures';
+        return '/project_pictures'; 
     }
 
 

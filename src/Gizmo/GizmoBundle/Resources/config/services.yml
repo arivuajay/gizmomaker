@@ -51,3 +51,9 @@ services:
     controller.admin_user:
         class: Gizmo\GizmoBundle\Controller\Administration\UserController
         arguments: [@templating,@form.factory,@manager.user,@=service('doctrine.orm.default_entity_manager').getRepository('GizmoBundle:User'),@router]
+        
+    app.twig_extension:
+        class: Gizmo\GizmoBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

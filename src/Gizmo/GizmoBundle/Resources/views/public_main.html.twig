@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -25,7 +25,29 @@
         {% block head_javascripts %}
             <!-- Put this script in your <head> -->
             <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+			<script>
+  var gtq = (typeof gtq !== 'undefined' ? _gtq : []);
+  _gtq.push(['_setAccount', 'ahm0etzbqco3ydqws_kcjw']);
+  _gtq.push(['visit']);
+  
+  _GT_config = {
+    gt_account: 'ahm0etzbqco3ydqws_kcjw',
+    gt_host: '//app.getrooster.com/'
+  };
+
+  GT = (typeof GT !== 'undefined' ? GT : (function(){var s={on:[]};var m='unloaded';function r(t,c){s.on.push({type:t,callback:c});}return{state:m,properties:{}, s:s,on:r}; })());
+
+  (function() {
+    var gt = document.createElement('script'); gt.type = 'text/javascript'; gt.async = true;
+    gt.src = "//app.getrooster.com/assets/gt-loader.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gt, s);
+  })();
+
+</script>
         {% endblock %}
+		
+		
+		
     </head>
 
     <body dir="rtl">
@@ -33,7 +55,7 @@
             <div class="navbar-top">
                 <div class="container">
                     <ul class="list-inline" >
-                        {top_menu}
+                        {top_menu}                        
                     </ul>
                 </div>
             </div>
@@ -187,6 +209,8 @@
                                 </div>
                             </div>#}
                             <div class="col-lg-12 col-md-12">
+                                <input type="hidden" class="form-control" name="referrer_uri" required="required" value="{{ referrerURL() }}" />
+                                <input type="hidden" class="form-control" name="current_uri" required="required" value="{{ app.request.uri }}" />
                                 <div class="form-group">
                                     <label for="cInputName">שם מלא</label>
                                     <input type="text" class="form-control" name="name" required="required" id="cInputName" />
@@ -224,6 +248,7 @@
     '@GizmoBundle/Resources/public/js/jquery-2.0.1.min.js'
     '@GizmoBundle/Resources/public/js/bootstrap.js'
             %}
+
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
             {#        ***************************************************************
@@ -267,24 +292,37 @@
 
             <script type="text/javascript">
                 /* <![CDATA[ */
-
+                goog_snippet_vars = function() {
+                    var w = window;
+                    w.google_conversion_id = 1054807211;
+                    w.google_conversion_label = "BME1CO3Z-wMQq6n89gM";
+                    w.google_conversion_value = 1.00;
+                    w.google_conversion_currency = "USD";
+                    w.google_remarketing_only = false;
+                }
+                // DO NOT CHANGE THE CODE BELOW.
+                goog_report_conversion = function(url) {
+                    goog_snippet_vars();
+                    window.google_conversion_format = "3";
+                    window.google_is_call = true;
+                    var opt = new Object();
+                    opt.onload_callback = function() {
+                        if (typeof (url) != 'undefined') {
+                            window.location = url;
+                        }
+                    }
+                    var conv_handler = window['google_trackConversion'];
+                    if (typeof (conv_handler) == 'function') {
+                        conv_handler(opt);
+                    }
+                }
                 /* ]]> */
-            </script>
 
-            <!-- Call this function when the form submits -->
-            <script type="text/javascript">
                 /* <![CDATA[ */
                 $('#expand_phone_no').on('click', function() {
                     $(this).addClass('hide');
                     $(this).next('#phone_block').removeClass('hide');
-                    window.google_trackConversion({
-                        google_conversion_id: 1054807211,
-                        google_conversion_language: "en",
-                        google_conversion_format: "3",
-                        google_conversion_color: "ffffff",
-                        google_conversion_label: "yaLqCI6IsFkQq6n89gM",
-                        google_remarketing_only: false
-                    });
+                    goog_report_conversion();
                 });
                 //]]>
             </script>

@@ -80,7 +80,7 @@ class ProjectController {
                     'flash_good',
                     'New Project : "'.$project->getName().'" saved successfully.'
                 );
-            }else{
+            }else{ 
                 $request->getSession()->getFlashBag()->add(
                     'flash_good',
                     'Error occurred while removing the project : "'.$project->getName().'".'

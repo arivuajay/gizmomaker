@@ -60,7 +60,7 @@
                            class="select-secrecy">{{ project.getIsPublished()?'no':'yes' }}</a>
                     </td>
                     <td>
-                        <a href="{{ path('project_view', {'name2':project.getName2(),'code':project.getCode() }) }}" class="btn btn-default btn-xs">view</a>
+                        <a href="{{ path('project_view', {'code':project.getCode(),'name2':project.getName2URL() }) }}" class="btn btn-default btn-xs">view</a>
                         <a href="{{ path('administration_project_edit', {'name2':project.getName2(),'code':project.getCode() }) }}" class="btn btn-default btn-xs">edit</a>
                         <form method="post" action="{{ path('administration_project_remove',{'id':project.getId()}) }}"  class="remove-item-form">
                             <button class="btn btn-danger btn-xs">delete</button>

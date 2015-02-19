@@ -230,48 +230,172 @@
 				}(i, ''));	
 				thumb_wrapper.prepend(thumbnail);
 			}
-
+			
 			// Style and position thumbnail container and content wrapper
 			// + insert thumbnail container
-
-
+			if (options.thumbnails_position === 'outside-first' || options.thumbnails_position === 'outside-last')
+			{
+				if (options.thumbnails_direction !== 'horizontal')
+				{
+					/* outside & vertical */
+					content_container.css('float', 'left');
+					content_container.css('width', options.content_width);
+					thumb_container.css('float', 'left');
+					thumb_container.css('height', options.content_height);
+				}
+				else
+				{
 					/* outside & horizontal */
 					jQuery(thumb_wrapper).find('.showcase-thumbnail').css('float', 'left');
-					jQuery(thumb_wrapper).append(jQuery('<div />').addClass('clear'));
-
+					//jQuery(thumb_wrapper).append(jQuery('<div />').addClass('clear'));
+				}
 				
-
-
+				if (options.thumbnails_position === 'outside-last')
+				{
+					/* outside-last */
+					showcase.append(thumb_container);
+					if (options.thumbnails_direction !== 'horizontal') { showcase.append(jQuery('<div />').addClass('clear')); }
+				}
+				else
+				{
+					/* outside-first */
+					showcase.prepend(thumb_container);
+					if (options.thumbnails_direction !== 'horizontal') { showcase.append(jQuery('<div />').addClass('clear')); }
+				}
+			}
+			else
+			{
+				thumb_container.css({'position' : 'absolute', 'z-index' : 20});
+				if (options.thumbnails_direction === 'horizontal') 
+				{
 					/* inside & horizontal */
 					thumb_container.css({'left' : 0, 'right' : 0});
 					jQuery(thumb_wrapper).find('.showcase-thumbnail').css('float', 'left');
 					jQuery(thumb_wrapper).append(jQuery('<div />').addClass('clear'));
 					
-
-
-				showcase.after(thumb_container);
-
+					/* inside first */
+					if (options.thumbnails_position === 'inside-first') { thumb_container.css('top', 0); }
+					/* inside last */
+					else { thumb_container.css('bottom', 0); }
+				}
+				else 
+				{
+					/* inside & vertical */
+					thumb_container.css({'top' : 0, 'bottom' : 0});
+					/* inside first */
+					if (options.thumbnails_position === 'inside-first') { thumb_container.css('left', 0); }
+					/* inside last */
+					else { thumb_container.css('right', 0); }
+				}
+				content_container.prepend(thumb_container);
+			}
 			
 			// Add class and style to thumbnail container
 			thumb_container.addClass('showcase-thumbnail-container');
-
+			thumb_container.css('overflow', 'hidden');
 			
 			// Add class and style to thumbnail restriction
 			thumb_restriction.addClass('showcase-thumbnail-restriction');
 			thumb_restriction.css({'overflow' : 'hidden', 'position' : 'relative'});
-
+			if (options.thumbnails_direction === 'horizontal') { thumb_restriction.css({'float' : 'left'}); }
 			
 			// Add class and style to thumbnail wrapper 
 			thumb_wrapper.addClass('showcase-thumbnail-wrapper');
-
+			if (options.thumbnails_direction === 'horizontal') { thumb_wrapper.addClass('showcase-thumbnail-wrapper-horizontal'); }
+			else { thumb_wrapper.addClass('showcase-thumbnail-wrapper-vertical'); }
 			thumb_wrapper.css('position', 'relative');
-
+			
 			// Append wrapper and restriction
 			thumb_restriction.append(thumb_wrapper);
 			thumb_container.append(thumb_restriction);
-
-
-
+			
+			// Add backward button
+			var buttonBackward = jQuery('<div class="showcase-thumbnail-button-backward" />');
+			if (options.thumbnails_direction !== 'horizontal')
+			{
+				buttonBackward.html('<span class="showcase-thumbnail-vertical"><span>Up</span></span>');
+			}
+			else
+			{
+				buttonBackward.css({'float' : 'left'});
+				buttonBackward.html('<span class="showcase-thumbnail-horizontal"><span>Left</span></span>');
+			}
+			buttonBackward.click(function() { slideThumbnailWrapper('backward', false, true); });
+			thumb_container.prepend(buttonBackward);
+			
+			// Add forward button
+			var buttonForward = jQuery('<div class="showcase-thumbnail-button-forward" />');
+			if (options.thumbnails_direction !== 'horizontal')
+			{
+				buttonForward.html('<span class="showcase-thumbnail-vertical"><span>Down</span></span>');
+			}
+			else
+			{
+				buttonForward.css({'float' : 'left'});
+				buttonForward.html('<span class="showcase-thumbnail-horizontal"><span>Right</span></span>');
+			}
+			buttonForward.click(function() { slideThumbnailWrapper('forward', false, true); });
+			thumb_container.append(buttonForward);
+			
+			// Set the number of thumbnails per page.
+			var thumbnailVisibleStretch = 0;
+			if (options.thumbnails_direction !== 'horizontal')
+			{
+				thumbnailVisibleStretch = getElementHeight(thumb_wrapper, false);
+				thumbnailVisibleStretch += (getElementHeight(buttonBackward)) + (getElementHeight(buttonForward));
+				while (thumbnailVisibleStretch < options.content_height)
+				{
+					thumbnailVisibleStretch += getElementHeight(jQuery(thumbnailArray[0]));
+					thumbnailsPerPage++;
+				}
+			}
+			else
+			{
+				thumbnailVisibleStretch = getElementWidth(thumb_wrapper, false);
+				thumbnailVisibleStretch += (getElementWidth(buttonBackward)) + (getElementWidth(buttonForward));
+				
+				while (thumbnailVisibleStretch < showcase_width)
+				{
+					thumbnailVisibleStretch += getElementWidth(jQuery(thumbnailArray[0]));
+					thumbnailsPerPage++;
+				}
+			}
+			
+			// Hide buttons if they're not necessary
+			if (thumbnailsPerPage+1 > thumbnailArray.length)
+			{
+				if (options.thumbnails_direction !== 'horizontal')
+				{
+					thumb_restriction.css('margin-top', getElementHeight(buttonBackward));
+				}
+				else
+				{
+					thumb_restriction.css('margin-left', getElementWidth(buttonBackward));
+				}
+				buttonBackward.hide();
+				buttonForward.hide();
+			}
+			
+			// Set thumbnail restriction height or width
+			if (options.thumbnails_direction !== 'horizontal')
+			{
+				var buttonsHeight = (getElementHeight(buttonBackward)) + (getElementHeight(buttonForward));
+				thumb_restriction.css('height', options.content_height - buttonsHeight);
+			}
+			else
+			{
+				var buttonsWidth = (getElementWidth(buttonBackward)) + (getElementWidth(buttonForward));
+				thumb_restriction.css('width',  showcase_width-buttonsWidth);
+			}
+			
+			// Set thumbnail wrapper width
+			if (options.thumbnails_direction === 'horizontal')
+			{
+				jQuery('.showcase-thumbnail').each(function() { thumbnailStretch += getElementWidth(jQuery(this)); });
+                                thumbnailStretch += 40;
+				thumb_wrapper.css('width', thumbnailStretch);
+			}
+			else { jQuery('.showcase-thumbnail').each(function() { thumbnailStretch += getElementHeight(jQuery(this)); }); }
 		}
 		
 		// Set showcase width and height
@@ -280,7 +404,7 @@
 			showcase.css('width', showcase_width + getElementWidth(thumb_wrapper, true, false));
 		}
 		else if  (!options.fit_to_parent) { showcase.css('width', showcase_width); }
-
+		
 		// Turn on/off auto slide
 		if (content_count > 1 && options.auto) { myInterval = window.setInterval(autoChange, options.interval); }
 		

@@ -1,6 +1,5 @@
 {% extends 'GizmoBundle::public_main.html.twig' %}
-
-
+{% block title %}{{url_title}}{% endblock %}
 {% block body %}
 
     <section class="content-row content-page">
@@ -8,10 +7,10 @@
             <div class="col-md-9 col-lg-9">
                 <div dir="rtl">
                     <ol class="breadcrumb" dir="rtl">
-                        <li><a href="{{ path('gizmo_article_page',{'category':url_category}) }}">{{ url_category |e }}</a></li>
+                        <li><a href="{{ path('gizmo_article_page',{'category':link_cat}) }}">{{ url_category |e }}</a></li>
                         <li class="active">{{url_title}}</li>
                     </ol>
-                    <h1 style="margin-bottom: 10px;">{title}</h1>
+                    {#<h1 style="margin-bottom: 10px;">{title}</h1>#}
                     {content}
                     <div class="child-articles">
                         <ul></ul>
@@ -25,6 +24,8 @@
                     <div class="panel-body">
                         <form method="post" action="{{ path('contact_us') }}">
                                 <div class="form-group">
+                                    <input type="hidden" class="form-control" name="referrer_uri" required="required" value="{{ referrerURL() }}" />
+                                    <input type="hidden" class="form-control" name="current_uri" required="required" value="{{ app.request.uri }}" />
                                     <input type="text" class="form-control" name="name" required="required" id="cInputName" placeholder="שם מלא" />
                                 </div>
                                 <div class="form-group">
