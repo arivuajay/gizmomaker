@@ -27,7 +27,7 @@ class ContactController {
         $message = \Swift_Message::newInstance()
             ->setSubject('Contact infomation')
             ->setFrom('notifications@gizmomaker.co.il')
-            ->setTo(array('nadesh@arkinfotec.com', 'rajharajesuwari@gmail.com'))
+            ->setTo(array('nimrod.rotem@gmail.com','asanka@ninearts.com'))
             ->setBody(
                 $this->templating->render(
                     'GizmoBundle:Emails:contact_form.html.twig',
@@ -43,14 +43,14 @@ class ContactController {
             )
         ;
         $this->mailer->send($message);
-        return new RedirectResponse($this->router->generate('contact_thankyou'));
+        return new RedirectResponse($this->router->generate('contact_thankyou', array('from_page'=>$request->get('from_page'))));
     }
 
-    public function thankyouAction(){
-        $message = "תודה לך, ההודעה נשלחה";
+    public function thankyouAction($from_page){
+        $message = "???? ??, ?????? ?????";
         return $this->templating->renderResponse(
             'GizmoBundle:Page:thankyou.html.twig',
-            ['message'=> $message]
+            ['message'=> $message, 'from_page'=>$from_page]
         );
     }
 }

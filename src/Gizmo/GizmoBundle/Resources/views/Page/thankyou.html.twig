@@ -54,6 +54,17 @@
         <img alt="Google Analytics" height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1054807211/?label=jd_oCL2ysFkQq6n89gM&amp;guid=ON&amp;script=0"/>
     </div>
     </noscript> 
+    
+    {% if (from_page =='Right') %}
+    <script>
+        _gaq.push(['_trackEvent', 'Right contact form', 'Submit']);
+    </script>
+    {% else %}
+    <script>
+        _gaq.push(['_trackEvent', 'Top contact form', 'Submit']);
+    </script>    
+    {% endif %}
+    
 {% endblock %}
 
 

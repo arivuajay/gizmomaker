@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -25,25 +25,24 @@
         {% block head_javascripts %}
             <!-- Put this script in your <head> -->
             <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
-			<script>
-  var gtq = (typeof gtq !== 'undefined' ? _gtq : []);
-  _gtq.push(['_setAccount', 'ahm0etzbqco3ydqws_kcjw']);
-  _gtq.push(['visit']);
-  
-  _GT_config = {
-    gt_account: 'ahm0etzbqco3ydqws_kcjw',
-    gt_host: '//app.getrooster.com/'
-  };
+            <script>
+                var _gtq = (typeof gtq !== 'undefined' ? _gtq : []);
+                _gtq.push(['_setAccount', 'ahm0etzbqco3ydqws_kcjw']);
+                _gtq.push(['visit']);
 
-  GT = (typeof GT !== 'undefined' ? GT : (function(){var s={on:[]};var m='unloaded';function r(t,c){s.on.push({type:t,callback:c});}return{state:m,properties:{}, s:s,on:r}; })());
+                _GT_config = {
+                gt_account: 'ahm0etzbqco3ydqws_kcjw',
+                gt_host: '//app.getrooster.com/'
+                };
 
-  (function() {
-    var gt = document.createElement('script'); gt.type = 'text/javascript'; gt.async = true;
-    gt.src = "//app.getrooster.com/assets/gt-loader.js";
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gt, s);
-  })();
+                GT = (typeof GT !== 'undefined' ? GT : (function(){var s={on:[]};var m='unloaded';function r(t,c){s.on.push({type:t,callback:c});}return{state:m,properties:{}, s:s,on:r}; })());
 
-</script>
+                (function() {
+                var gt = document.createElement('script'); gt.type = 'text/javascript'; gt.async = true;
+                gt.src = "//app.getrooster.com/assets/gt-loader.js";
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gt, s);
+                })();
+            </script>
         {% endblock %}
 		
 		
@@ -75,7 +74,7 @@
                         </a>
                     </div>
                     <p class="navbar-text contact-info navbar-left">
-                        <a href="javascript:void(0)" id="expand_phone_no">
+                        <a href="javascript:void(0)" id="expand_phone_no" onClick="_gaq.push(['_trackEvent', 'Top phone', 'Click']);">
                             התקשר אלינו
                             {% image '@GizmoBundle/Resources/public/images/phone.png' %}
                             <img src="{{ asset_url }}" width="36" height="36" alt="התקשר אלינו">
@@ -94,7 +93,7 @@
                     </p>
                     <div class="collapse navbar-collapse header-collapse">
                         <ul class="nav nav-justified">
-                            <li class="how-it-works"><a href="http://gizmomaker.co.il/articles/איך_זה_עובד" >
+                            <li class="how-it-works"><a href="http://gizmomaker.co.il/articles/איך-זה-עובד" >
                                     איך זה עובד  {% image '@GizmoBundle/Resources/public/images/help_50.png' %}
                                     <img src="{{ asset_url }}" width="36" height="36" alt="איך זה עובד  ">
                                     {% endimage %}</a></li>
@@ -102,7 +101,7 @@
                                     {% image '@GizmoBundle/Resources/public/images/search_50.png' %}
                                     <img src="{{ asset_url }}" width="36" height="36" alt="צפה בפרויקטים">
                                     {% endimage %}</a></li>
-                            <li class="submit-idea"><a href="#contact-us" data-toggle="modal">התחל
+                            <li class="submit-idea"><a href="#contact-us" data-toggle="modal" onClick="_gaq.push(['_trackEvent', 'Top contact button', 'Click']);">התחל
                                     {% image '@GizmoBundle/Resources/public/images/bulb_50.png' %}
                                     <img src="{{ asset_url }}" width="36" height="36" alt="התחל">
                                     {% endimage %}</a></li>
@@ -211,6 +210,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <input type="hidden" class="form-control" name="referrer_uri" required="required" value="{{ referrerURL() }}" />
                                 <input type="hidden" class="form-control" name="current_uri" required="required" value="{{ app.request.uri }}" />
+                                <input type="hidden" class="form-control" name="from_page" required="required" value="Top" />
                                 <div class="form-group">
                                     <label for="cInputName">שם מלא</label>
                                     <input type="text" class="form-control" name="name" required="required" id="cInputName" />
@@ -221,7 +221,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="cInputName">מספר טלפון </label>
+                                    <label for="cInputName">מספר טלפון  </label>
                                     <input type="text" required="required" class="form-control" name="phone" id="cInputPhone" />
                                 </div>
 

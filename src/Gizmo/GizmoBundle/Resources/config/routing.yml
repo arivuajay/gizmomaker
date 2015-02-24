@@ -26,7 +26,7 @@ contact_us:
         path: /contact
         defaults: { _controller: controller.contact:contactAction }
 contact_thankyou:
-        path: /thankyou
+        path: /thankyou/{from_page}
         defaults: { _controller: controller.contact:thankyouAction }
 login:
     path: /auth/login
